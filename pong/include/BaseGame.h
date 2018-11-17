@@ -110,19 +110,7 @@ public:
         delete ball, player1, player2;
     }
 
-    void scoreUp(cPaddle * player)
-    {
-        if (player == player1){
-            score1++;
-        }
-        else if (player == player2) {
-            score2++;
-        }
-
-        ball ->Reset();
-        player1->Reset();
-        player2->Reset();
-    }
+    void scoreUp(cPaddle * player);
 
 //    void Draw() {
 //        system("clear");
