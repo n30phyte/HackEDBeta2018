@@ -82,7 +82,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/n30phyte/Documents/HackEDBeta/pong/src/main.cpp">
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/pong/BaseGame.cpp">
+			<Option target="ai_pong"/>
+		</Unit>
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/pong/include/BaseGame.h">
+			<Option target="ai_pong"/>
+		</Unit>
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/pong/main.cpp">
 			<Option target="ai_pong"/>
 		</Unit>
 		<Unit filename="/home/n30phyte/Documents/HackEDBeta/CMakeLists.txt">
