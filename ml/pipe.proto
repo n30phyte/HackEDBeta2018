@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package pongpipe;
+
+message State {
+    enum Pixels {
+        paddle1 = 0;
+        paddle2 = 1;
+        ball = 2;
+    }
+}

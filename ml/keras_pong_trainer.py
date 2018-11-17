@@ -40,7 +40,7 @@ train_y = []
 
 def pong_preprocess_screen(I):
   I = I[35:195] 
-  I = I[::2,::2,0] 
+  I = I[::2,::2,0]
   I[I == 144] = 0 
   I[I == 109] = 0 
   I[I != 0] = 1 
