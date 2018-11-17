@@ -12,7 +12,7 @@ using namespace std;
 
 enum eDirec { STOP = 0, LEFT = 1, UPLEFT = 2, UPRIGHT = 3, RIGHT = 4, DOWNRIGHT = 5, DOWNLEFT = 6 };
 
-class cBall {
+class Ball {
     // position of ball
 private:
     int x, y;
@@ -20,7 +20,7 @@ private:
     eDirec direction;
 
 public:
-    cBall(int posX, int posY)
+    Ball(int posX, int posY)
     {
         // saves original location of ball
         oriX = posX;
@@ -39,6 +39,9 @@ public:
     int getX();
     int getY();
     eDirec getDirection() {return direction; }
+    int getX();
+    int getY();
+    eDirec getDirection();
 
     void move();
 
@@ -78,6 +81,8 @@ public:
 
     friend ostream & operator <<(ostream & o, cPaddle c) {
         o << "Paddle [" << c.x << "," << c.y << "]";
+    friend std::ostream & operator <<(std::ostream & o, Ball c) {
+        o << "Ball [" << c.x << "," << c.y << "][" << c.direction << "]";
         return o;
     }
 };
@@ -157,6 +162,11 @@ public:
     void Stop();
     bool Stopped();
 
+    void setInputManager(InputManager<BaseInput, BaseInput>);
+private:
+    bool running;
+    InputManager<BaseInput, BaseInput> inputManager;
+    OutputManager<BaseOutput> graphicsManager;
 };
 
 #endif //HACKEDBETA_BASEGAME_H

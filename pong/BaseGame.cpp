@@ -2,6 +2,7 @@
 // Created by n30phyte on 17/11/18.
 //
 
+#include <cstdlib>
 #include <iostream>
 #include "BaseGame.h"
 #include <ctime>
@@ -10,6 +11,9 @@
 //int player2score = 0;
 
 void cBall::Reset() {
+    x = oriX;
+    y = oriY;
+void Ball::Reset() {
     x = oriX;
     y = oriY;
     direction = STOP;
@@ -35,6 +39,9 @@ int cBall::getY() {
 }
 
 void cBall::move() {
+eDirec Ball::getDirection() { return direction; }
+
+void Ball::move() {
     switch (direction) {
         case STOP:
             break;
@@ -99,13 +106,24 @@ void BaseGame::Loop() {
 }
 
 void BaseGame::Start() {
+    BaseGame::Loop();
+
+    running = true;
     // setup?!?!?
 }
 
+void BaseGame::setInputManager(InputManager<BaseInput, BaseInput> manager) {
+
+    inputManager = manager;
+}
+
+
 void BaseGame::Stop() {
-    // stop the game
+    running = false;
 }
 
 bool BaseGame::Stopped() {
     // return true if game has stopped
+bool BaseGame::isStopped() {
+    return not running;
 }

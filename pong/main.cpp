@@ -1,25 +1,24 @@
 #include <iostream>
+
+#include "InputManager.h"
+#include "OutputManager.h"
 #include "BaseGame.h"
 
 int main(int argc, char *argv[]) {
 
+    BaseGame pong;
 
     if(argc == 1) {
-        std::cout << "Graphics mode" << std::endl;
+        std::cout << "Running in Graphics mode." << std::endl;
+
     }
     else
     {
-        std::cout << argv[1] << std::endl;
+        std::cout << "Running in Headless mode." << std::endl;
+
+        InputManager<AIInput, AIInput> inputs;
+
     }
 
-    BaseGame game;
-
-    game.Start();
-
-    while(true)
-    {
-        game.Loop();
-    }
-
-    return 0;
+    pong.Start();
 }
