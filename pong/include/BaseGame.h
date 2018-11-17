@@ -6,9 +6,9 @@
 #define HACKEDBETA_BASEGAME_H
 
 #include <iostream>
-using namespace std;
 #include <ctime>
 // #include <conio.h>
+using namespace std;
 
 enum eDirec { STOP = 0, LEFT = 1, UPLEFT = 2, UPRIGHT = 3, RIGHT = 4, DOWNRIGHT = 5, DOWNLEFT = 6 };
 
@@ -122,6 +122,43 @@ public:
         ball ->Reset();
         player1->Reset();
         player2->Reset();
+    }
+
+    void Draw() {
+        system("clear");
+
+        for (int i=0; i < width + 2; i++) {
+            cout << "#";
+        }
+
+        cout << endl;
+
+        for (int i = 0; i < height; i++){
+            for (int j = 0; j < width; j++){
+                int ballx = ball->getX();
+                int bally = ball->getY();
+                int player1x = player1->getX();
+                int player1y = player1->getY();
+                int player2x = player2->getX();
+                int player2y = player2->getY();
+            }
+        }
+
+        if (j == 0) {
+            cout << "#";
+        }
+
+        if (ballx == j && bally == i) {
+            cout << "o";
+        }
+
+        if (j == width -1){
+            cout << "#";
+        }
+
+        for (int i=0; i < width + 2; i++) {
+            cout << "#";
+        }
     }
 };
 
