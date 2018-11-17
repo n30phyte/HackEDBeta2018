@@ -5,7 +5,6 @@
 #include <iostream>
 #include "BaseGame.h"
 #include <ctime>
-using namespace std;
 
 //int player1score = 0;
 //int player2score = 0;
@@ -78,30 +77,29 @@ void cPaddle::goDown() { y--; }
 
 //
 
+void cGameManager::scoreUp(cPaddle * player)
+{
+    if (player == player1){
+        score1++;
+    }
+    else if (player == player2) {
+        score2++;
+    }
 
+    ball ->Reset();
+    player1->Reset();
+    player2->Reset();
+}
 
 //
 
 void BaseGame::Loop() {
-    cBall c(0,0);
-    cout << c << endl;
-    c.randomDirection();
-    cout << c << endl;
-    c.move();
-    cout << c << endl;
-
-    cPaddle p1(0,0);
-    cPaddle p2(10,0);
-    cout << p1 << endl;
-    cout << p2 << endl;
-    p1.goUp();
-    p2.goDown();
-    cout << p1 << endl;
-    cout << p2 << endl;
+    cGameManager c(40,20);
+    c.Draw();
 }
 
 void BaseGame::Start() {
-    BaseGame::Loop();
+    // setup?!?!?
 }
 
 void BaseGame::Stop() {
