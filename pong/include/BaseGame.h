@@ -141,24 +141,26 @@ public:
                 int player1y = player1->getY();
                 int player2x = player2->getX();
                 int player2y = player2->getY();
+
+                if (j == 0) {
+                    cout << "#";
+                }
+
+                if (ballx == j && bally == i) {
+                    cout << "o";
+                }
+
+                if (j == width -1){
+                    cout << "#";
+                }
+
+                for (int i=0; i < width + 2; i++) {
+                    cout << "#";
+                }
             }
         }
 
-        if (j == 0) {
-            cout << "#";
-        }
 
-        if (ballx == j && bally == i) {
-            cout << "o";
-        }
-
-        if (j == width -1){
-            cout << "#";
-        }
-
-        for (int i=0; i < width + 2; i++) {
-            cout << "#";
-        }
     }
 };
 
