@@ -2,7 +2,12 @@ syntax = "proto2";
 
 package pongpipe;
 
-message State {
+message GameInput {
+    required bool KeyUp = 1;
+    required bool KeyDown = 2;    
+}
+
+message GameState {
     enum Pixels {
         paddle1 = 0;
         paddle2 = 1;

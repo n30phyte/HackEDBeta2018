@@ -22,7 +22,7 @@ input_dim = 80 * 80
 gamma = 0.99
 update_frequency = 1
 learning_rate = 0.001
-resume = True
+resume = False
 render = True
 
 #Initialize
