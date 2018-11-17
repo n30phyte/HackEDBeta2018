@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="HackEDBeta"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\share\;CMake Files\..\..\..\..\usr\share\cmake\;CMake Files\..\..\..\..\usr\share\cmake\Modules\;CMake Files\pong\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/n30phyte/Documents/HackEDBeta/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/n30phyte/Documents/HackEDBeta/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/n30phyte/Documents/HackEDBeta/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ai_pong">
+				<Option output="/home/n30phyte/Documents/HackEDBeta/build/pong/ai_pong" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/n30phyte/Documents/HackEDBeta/build/pong"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/n30phyte/Documents/HackEDBeta/pong/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 ai_pong"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ai_pong/fast">
+				<Option output="/home/n30phyte/Documents/HackEDBeta/build/pong/ai_pong" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/n30phyte/Documents/HackEDBeta/build/pong"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/n30phyte/Documents/HackEDBeta/pong/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 ai_pong/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/n30phyte/Documents/HackEDBeta/build/pong/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/pong/src/main.cpp">
+			<Option target="ai_pong"/>
+		</Unit>
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/../../../../usr/share/cmake/Modules/FindBoost.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\share\cmake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/../../../../usr/share/cmake/Modules/FindSFML.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\share\cmake\Modules\"/>
+		</Unit>
+		<Unit filename="/home/n30phyte/Documents/HackEDBeta/pong/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\pong\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
