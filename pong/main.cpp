@@ -12,11 +12,13 @@ int main(int argc, char *argv[]) {
         std::cout << argv[1] << std::endl;
     }
 
-    BaseGame game();
+    BaseGame game;
+
+    game.Start();
 
     while(true)
     {
-        game();
+        game.Loop();
     }
 
     return 0;
