@@ -6,7 +6,10 @@
 #define HACKEDBETA_BASEGAME_H
 
 class BaseGame {
-
+public:
+    void Start();
+    void Loop();
+    
 };
 
 #endif //HACKEDBETA_BASEGAME_H

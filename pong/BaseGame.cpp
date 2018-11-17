@@ -3,3 +3,11 @@
 //
 
 #include "BaseGame.h"
+
+void BaseGame::Loop() {
+
+}
+
+void BaseGame::Start() {
+
+}
