@@ -2,39 +2,40 @@
 // Created by n30phyte on 17/11/18.
 //
 
+#include <iostream>
 #include "BaseGame.h"
+#include <ctime>
+using namespace std;
 
-int player1score = 0;
-int player2score = 0;
+//int player1score = 0;
+//int player2score = 0;
 
-void Ball::Reset() {
-    x = originalX;
-    y = originalY;
+void cBall::Reset() {
+    x = oriX;
+    y = oriY;
     direction = STOP;
 }
 
-void Ball::changeDirection(eDirec d) {
+void cBall::changeDirection(eDirec d) {
     // takes in former direction
     direction = d;
 }
 
-void Ball::randomDirection() {
+void cBall::randomDirection() {
     // generates random numbers from 1 to 6,
     // numbers corresponding to possible directions
     direction = (eDirec) ((rand() % 6) + 1);
 }
 
-int Ball::getX() {
+int cBall::getX() {
     return x;
 }
 
-int Ball::getY() {
+int cBall::getY() {
     return y;
 }
 
-eDirec getDirection() { return direction; }
-
-void Ball::move() {
+void cBall::move() {
     switch (direction) {
         case STOP:
             break;
@@ -68,12 +69,39 @@ void Ball::move() {
 
 //
 
-void BaseGame::Loop() {
+void cPaddle::Reset() {x = oriX; y = oriY;}
+int cPaddle::getX() { return x; }
+int cPaddle::getY() { return y; }
 
+void cPaddle::goUp() { y++; }
+void cPaddle::goDown() { y--; }
+
+//
+
+
+
+//
+
+void BaseGame::Loop() {
+    cBall c(0,0);
+    cout << c << endl;
+    c.randomDirection();
+    cout << c << endl;
+    c.move();
+    cout << c << endl;
+
+    cPaddle p1(0,0);
+    cPaddle p2(10,0);
+    cout << p1 << endl;
+    cout << p2 << endl;
+    p1.goUp();
+    p2.goDown();
+    cout << p1 << endl;
+    cout << p2 << endl;
 }
 
 void BaseGame::Start() {
-
+    BaseGame::Loop();
 }
 
 void BaseGame::Stop() {
@@ -81,5 +109,5 @@ void BaseGame::Stop() {
 }
 
 bool BaseGame::Stopped() {
-    // if it
+    // return true if game has stopped
 }
