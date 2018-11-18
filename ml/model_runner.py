@@ -1,3 +1,4 @@
+import gym
 import numpy as np
 from keras import backend as K
 from keras.models import Sequential
@@ -10,6 +11,9 @@ from keras.layers.normalization import BatchNormalization
 from keras.layers.core import Activation, Dropout, Flatten
 from keras.layers.convolutional import UpSampling2D, Convolution2D
 import process
+
+env = gym.make("Pong-v0")
+observation = env.reset()
 
 input_dim = 80 * 80
 number_of_inputs = 6
@@ -27,7 +31,7 @@ prev_x = None
 
 if __name__ =="__main__":
     while(True):
-        gameState = process.getGameState()
+        gameState = process.getGameState(observation)
         
         cur_x = gameState
         x = cur_x - prev_x if prev_x is not None else np.zeros(input_dim)
