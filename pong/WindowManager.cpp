@@ -39,7 +39,14 @@ void WindowManager::Render() {
                                     while(Game.is_running)
                                     {
                                         Game.Loop();
+                                        if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+                                            windowContext.close();
+                                            break;
+                                        }
                                     }
+
+
+
                                     break;
                                 case 1:
                                     // std::cout << "VS AI pressed" << std::endl;
