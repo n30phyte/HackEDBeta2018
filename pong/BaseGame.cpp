@@ -9,10 +9,10 @@ void GameStateManager::ScoreCheck() {
     // If ball is < 8, Player1++
     // else player2++
     if (ball.getX() < 8) {
-        scores[2]++;
+        scores[1]++;
     }
     if (ball.getX() > 72) {
-        scores[1]++;
+        scores[0]++;
     }
     Reset();
 }
@@ -40,6 +40,16 @@ void GameStateManager::Step() {
     players[0]->step();
     players[1]->step();
 
+    board[ball.getX()][ball.getY()] = true;
+    board[ball.getX()][ball.getY()+1] = true;
+
+    for (int i = -4; i < 5; i++) {
+        board[players[0]->getX()][players[0]->getY()+i] = true;
+        board[players[0]->getX()+1][players[0]->getY()+i] = true;
+        board[players[1]->getX()][players[1]->getY()+i] = true;
+        board[players[1]->getX()+1][players[1]->getY()+i] = true;
+    }
+    
     ScoreCheck();
     CollisionCheck();
 }
