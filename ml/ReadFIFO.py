@@ -1,20 +1,14 @@
-import os
-import errno
+import zmq
 
-FIFO = '../gamestate'
+context = zmq.Context()
+socket = context.socket(zmq.SUB)
 
-try:
-    os.mkfifo(FIFO)
-except OSError as oe:
-    if oe.errno != errno.EEXIST:
-        raise
+socket.connect("tcp://localhost:5555")
 
-print("Opening FIFO...")
-with open(FIFO) as fifo:
-    print("FIFO opened")
-    while True:
-        data = fifo.read()
-        if len(data) == 0:
-            print("Writer closed")
-            break
-        print('Read: "{0}"'.format(data))
+socket.setsockopt_string(zmq.SUBSCRIBE, "gamestate")
+
+print("Subscribing")
+while True:
+    #  Wait for next request from client
+    message = socket.recv_string()
+    print(message)

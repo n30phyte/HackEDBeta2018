@@ -10,7 +10,21 @@ include_directories(pong/include)
 
 add_executable(${EXECUTABLE_NAME} main.cpp)
 
-target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES} pong)
+find_package(PkgConfig)
+
+pkg_check_modules(PC_ZeroMQ QUIET zmq)
+
+find_path(ZeroMQ_INCLUDE_DIR
+        NAMES zmq.hpp
+        PATHS ${PC_ZeroMQ_INCLUDE_DIRS}
+        )
+
+find_library(ZeroMQ_LIBRARY
+        NAMES zmq
+        PATHS ${PC_ZeroMQ_LIBRARY_DIRS}
+        )
+
+target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES} ${ZeroMQ_LIBRARY} pong)
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/res DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
