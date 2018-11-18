@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+import numpy as np
 
 def getGameState(I):
     I = I[35:195]

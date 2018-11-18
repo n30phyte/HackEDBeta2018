@@ -1,5 +1,6 @@
 import gym
 import numpy as np
+from time import sleep
 from keras import backend as K
 from keras.models import Sequential
 from keras.callbacks import ModelCheckpoint
@@ -17,20 +18,49 @@ observation = env.reset()
 
 input_dim = 80 * 80
 number_of_inputs = 6
+RENDER = True
+learning_rate = 0.001
 
-model = Sequential()
-model.add(Reshape((1,80,80), input_shape=(input_dim,)))
-model.add(Convolution2D(32, 9, 9, subsample=(4, 4), border_mode='same', activation='relu', init='he_uniform'))
-model.add(Flatten())
-model.add(Dense(16, activation='relu', init='he_uniform'))
-model.add(Dense(number_of_inputs, activation='softmax'))
+def make_main_model():
+    model = Sequential()
+    model.add(Reshape((1,80,80), input_shape=(input_dim,)))
+    model.add(Convolution2D(32, 9, 9, subsample=(4, 4), border_mode='same', activation='relu', init='he_uniform'))
+    model.add(Flatten())
+    model.add(Dense(16, activation='relu', init='he_uniform'))
+    model.add(Dense(number_of_inputs, activation='softmax'))
+    opt = Adam(lr=learning_rate)
+    model.compile(loss='categorical_crossentropy', optimizer=opt)
+    return model
 
-model.load_weights('pong_model_checkpoint.h5')
+def make_backup_model():
+    model = Sequential()
+    model.add(Reshape((1, 80, 80), input_shape=(input_dim,)))
+    model.add(Convolution2D(32, 6, 6, subsample=(3, 3), border_mode='same',
+                            activation='relu', init='he_uniform'))
+    model.add(Flatten())
+    model.add(Dense(64, activation='relu', init='he_uniform'))
+    model.add(Dense(32, activation='relu', init='he_uniform'))
+    model.add(Dense(number_of_inputs, activation='softmax'))
+    opt = Adam(lr=learning_rate)
+    # See note regarding crossentropy in cartpole_reinforce.py
+    model.compile(loss='categorical_crossentropy', optimizer=opt)
+    return model
+
+model = make_backup_model()
+main = False
+
+if main:
+    model.load_weights('pong_model_checkpoint.h5')
+else:
+    model.load_weights('pong_reinforce.h5')
 
 prev_x = None
 
 if __name__ =="__main__":
     while(True):
+        if RENDER:
+            env.render()
+            # sleep(0.025)
         gameState = process.getGameState(observation)
         
         cur_x = gameState
@@ -40,5 +70,9 @@ if __name__ =="__main__":
         aprob = aprob/np.sum(aprob)
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
 
-        process.sendGameInput(action)
+        observation, reward, done, info = env.step(action)
+
+        if done:
+            prev_x = None
+            observation = env.reset()
         
