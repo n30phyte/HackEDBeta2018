@@ -50,7 +50,6 @@ class BaseGame {
 
 public:
     enum GameMode {
-        AIvsAI,
         AIvsPlayer,
         PlayervsPlayer,
     };

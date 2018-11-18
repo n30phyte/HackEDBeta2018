@@ -111,6 +111,7 @@ void BaseGame::Loop() {
         AIOutput->Update(_board);
     }
 
+
 }
 BaseGame::BaseGame() {
 
