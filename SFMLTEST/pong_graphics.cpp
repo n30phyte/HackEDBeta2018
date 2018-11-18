@@ -8,17 +8,17 @@ int main() {
 
     sf::RectangleShape leftPaddle;
     leftPaddle.setSize(paddleSize);
-    leftPaddle.setFillColor(sf::Color::White);
+    leftPaddle.setFillColor(sf::Color(144, 144, 144));
     leftPaddle.setPosition(4, 36);
 
     sf::RectangleShape rightPaddle;
     rightPaddle.setSize(paddleSize);
-    rightPaddle.setFillColor(sf::Color::White);
+    rightPaddle.setFillColor(sf::Color(109, 109, 109));
     rightPaddle.setPosition(74, 36);
 
     sf::RectangleShape ball;
     ball.setSize(ballSize);
-    ball.setFillColor(sf::Color::White);
+    ball.setFillColor(sf::Color(236, 236, 236));
     ball.setPosition(38, 39);
 
     sf::Vector2f ballVelocity(1, .8);
