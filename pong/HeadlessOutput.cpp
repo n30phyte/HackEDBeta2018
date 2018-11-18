@@ -4,6 +4,9 @@
 
 #include <HeadlessOutput.h>
 #include <sstream>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 void HeadlessOutput::Update(std::vector<int> ball_location,
                             std::vector<int> paddle0_location,
@@ -26,14 +29,14 @@ void HeadlessOutput::Update(std::vector<int> ball_location,
     }
 
     std::stringstream response;
-    for (int y = 0; y < 80; y++) {
-        for (int x = 0; x < 80; x++) {
-            std::cout << board[x][y];
-        }
-        std::cout << std::endl;
-    }
 
 }
 HeadlessOutput::HeadlessOutput() {
+//    int pipe;
+//    pipe = open("/tmp/myFIFO", O_WRONLY);
+//    while (true) {
+//        pipe.write(response.str(), 6400);
+//    }
+//    close(pipe);
 }
 

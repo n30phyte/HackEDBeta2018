@@ -75,11 +75,11 @@ void GameStateManager::CollisionCheck() {
     }
 
     // Check if hit paddle0
-    if (ball.getX() <= 9 and (ball.getY() < players[0]->getY() + 4 and ball.getY() > players[0]->getY() - 3)) {
+    if (ball.getX() == 9 and (ball.getY() < players[0]->getY() + 4 and ball.getY() > players[0]->getY() - 3)) {
         ball.setVelocityX(-ball.getVelocityX());
     }
     // Check if hit paddle1
-    if (ball.getX() >= 71 and (ball.getY() < players[1]->getY() + 4 and ball.getY() > players[1]->getY() - 3)) {
+    if (ball.getX() == 71 and (ball.getY() < players[1]->getY() + 4 and ball.getY() > players[1]->getY() - 3)) {
         ball.setVelocityX(-ball.getVelocityX());
     }
 

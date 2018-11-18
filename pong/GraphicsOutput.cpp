@@ -14,14 +14,14 @@ void GraphicsOutput::Update(std::vector<int> ball_location,
     sf::Texture texture;
     // Set ball color
     board.setPixel(ball_location[0], ball_location[1], sf::Color::White);
-    board.setPixel(ball_location[0], ball_location[1] + 1, sf::Color::White);
+    board.setPixel(ball_location[0], ball_location[1] + 1, sf::Color(236,236,236));
 
     for (auto i = -3; i < 5; i++) {
-        board.setPixel(paddle0_location[0], paddle0_location[1] + i, sf::Color::Blue);
-        board.setPixel(paddle0_location[0] + 1, paddle0_location[1] + i, sf::Color::Blue);
+        board.setPixel(paddle0_location[0], paddle0_location[1] + i, sf::Color(144, 144, 144));
+        board.setPixel(paddle0_location[0] + 1, paddle0_location[1] + i, sf::Color(144, 144, 144));
 
-        board.setPixel(paddle1_location[0], paddle1_location[1] + i, sf::Color::Green);
-        board.setPixel(paddle1_location[0] + 1, paddle1_location[1] + i, sf::Color::Green);
+        board.setPixel(paddle1_location[0], paddle1_location[1] + i, sf::Color(109, 109, 109));
+        board.setPixel(paddle1_location[0] + 1, paddle1_location[1] + i, sf::Color(109, 109, 109));
     }
 
     texture.create(80, 80);

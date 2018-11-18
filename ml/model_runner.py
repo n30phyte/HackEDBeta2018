@@ -41,4 +41,3 @@ if __name__ =="__main__":
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
 
         process.sendGameInput(action)
-        

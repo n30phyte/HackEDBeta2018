@@ -20,12 +20,14 @@ from keras.layers.normalization import BatchNormalization
 from keras.layers.core import Activation, Dropout, Flatten
 from keras.layers.convolutional import UpSampling2D, Convolution2D
 
+np.set_printoptions(threshold=np.nan)
+
 #Script Parameters
 input_dim = 80 * 80
 gamma = 0.99
 update_frequency = 5
 learning_rate = 0.001
-resume = True
+resume = False
 render = True
 EPISODES = 20
 
@@ -45,11 +47,15 @@ game_f = open('game_rewards.txt','w')
 mean_f = open('mean_rewards.txt', 'w')
 
 def pong_preprocess_screen(I):
-  I = I[35:195] 
+  I = I[35:195]
   I = I[::2,::2,0]
-  I[I == 144] = 0 
-  I[I == 109] = 0 
-  I[I != 0] = 1 
+  I[I == 144] = 0
+  I[I == 109] = 0
+  I[I != 0] = 1
+  for i in I:
+      for j in i:
+          print(j, end="")
+      print()
   return I.astype(np.float).ravel()
 def discount_rewards(r):
   discounted_r = np.zeros_like(r)
