@@ -2,6 +2,7 @@
 // Created by n30phyte on 17/11/18.
 //
 #include <GameObject.h>
+#include <iostream>
 
 int GameObject::getX() {
     return coordinates[0];
@@ -28,24 +29,26 @@ void GameObject::setY(int target) {
 }
 
 void GameObject::step() {
-    coordinates[0] = coordinates[0] + velocityX;
-    coordinates[1] = coordinates[1] + velocityY;
+    setX(getX() + velocityX);
+    setY(getY() + velocityY);
+
 }
 
-void GameObject::randomDirection() {
+int GameObject::randomInt() {
 
     std::random_device rd;
     std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> dice(1, 6);
+    std::uniform_int_distribution<int> dice(0, 1);
 
-    setVelocityX(dice(rng));
-    setVelocityY(dice(rng));
-
+    return dice(rng);
 }
 
 GameObject::GameObject(int x, int y) {
     startingCoordinates[0] = x;
     startingCoordinates[1] = y;
+
+    setVelocityY(0);
+    setVelocityX(0);
 
     Reset();
 }
@@ -64,9 +67,37 @@ void GameObject::setVelocityY(int velocity) {
 }
 
 Ball::Ball() : GameObject(40, 40) {
-    randomDirection();
+    if (randomInt() == 0) {
+        setVelocityY(-1);
+    } else {
+        setVelocityY(1);
+    }
+    if (randomInt() == 0) {
+        setVelocityX(-1);
+    } else {
+        setVelocityX(1);
+    }
+
+}
+void Ball::Reset() {
+    GameObject::Reset();
+    if (randomInt() == 0) {
+        setVelocityY(-1);
+    } else {
+        setVelocityY(1);
+    }
+    if (randomInt() == 0) {
+        setVelocityX(-1);
+    } else {
+        setVelocityX(1);
+    }
 }
 
-Paddle::Paddle(int x) : GameObject(40, x) {
+Paddle::Paddle(int x) : GameObject(x, 40) {
+
+}
+void Paddle::step() {
+    setX(getX() + velocityX);
+    setY(getY() + velocityY);
 
 }

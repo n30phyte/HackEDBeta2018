@@ -16,7 +16,7 @@ public:
     int getX();
     int getY();
 
-    void step();
+    virtual void step();
 
     void setVelocityX(int);
     void setVelocityY(int);
@@ -24,17 +24,17 @@ public:
     int getVelocityX();
     int getVelocityY();
 
+    void setX(int);
+    virtual void setY(int);
+
 protected:
 
-    void setX(int);
-    void setY(int);
 
-    virtual void randomDirection();
+    virtual int randomInt();
 
     int coordinates[2];             // X in 0, Y in 1
     int startingCoordinates[2];     // X in 0, Y in 1
 
-private:
     int velocityX;
     int velocityY;
 };
@@ -42,6 +42,8 @@ private:
 class Ball : public GameObject {
 public:
     Ball();
+    void Reset();
+
 };
 
 class Paddle : public GameObject {
@@ -49,8 +51,12 @@ class Paddle : public GameObject {
 public:
     explicit Paddle(int);
 
-    void setVelocityX(int) {
-        GameObject::setVelocityX(0);
+    void step();
+
+    void setY(int target) {
+        if(target < (80-4) and target > (4)){
+            GameObject::setY(target);
+        }
     }
 
 };

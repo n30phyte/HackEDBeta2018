@@ -17,9 +17,6 @@ public:
 private:
     sf::RenderWindow _window = sf::RenderWindow(sf::VideoMode(800, 800), "Player vs Player");
 
-    void generateBoard() {
-
-    }
 };
 
 #endif //HACKEDBETA_GRAPHICSOUTPUT_H

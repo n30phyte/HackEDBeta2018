@@ -60,6 +60,8 @@ public:
 
     void SetMode(GameMode);
 
+
+
 private:
     GraphicsOutput  * SFMLOutput;
     HeadlessOutput * AIOutput;
