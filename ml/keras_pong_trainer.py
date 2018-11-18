@@ -8,7 +8,6 @@ import os
 import gym
 import sys, glob
 import numpy as np
-import pickle
 from keras import backend as K
 from keras.models import Sequential
 from keras.callbacks import ModelCheckpoint

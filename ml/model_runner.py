@@ -1,5 +1,6 @@
 import gym
 import numpy as np
+from time import sleep
 from keras import backend as K
 from keras.models import Sequential
 from keras.callbacks import ModelCheckpoint
@@ -24,6 +25,7 @@ model.add(Convolution2D(32, 9, 9, subsample=(4, 4), border_mode='same', activati
 model.add(Flatten())
 model.add(Dense(16, activation='relu', init='he_uniform'))
 model.add(Dense(number_of_inputs, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer=opt)
 
 model.load_weights('pong_model_checkpoint.h5')
 
@@ -31,7 +33,7 @@ prev_x = None
 
 if __name__ =="__main__":
     while(True):
-        gameState = process.getGameState(observation)
+        gameState = process.getGameState()
         
         cur_x = gameState
         x = cur_x - prev_x if prev_x is not None else np.zeros(input_dim)
@@ -39,5 +41,3 @@ if __name__ =="__main__":
         aprob = ((model.predict(x.reshape([1,x.shape[0]]), batch_size=1).flatten()))
         aprob = aprob/np.sum(aprob)
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
-
-        process.sendGameInput(action)
