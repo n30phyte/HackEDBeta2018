@@ -16,10 +16,8 @@ public:
     AIInput();
     InputDirection Poll();
 private:
-    zmq::context_t context = zmq::context_t(1);
+    zmq::context_t context = zmq::context_t(2);
     zmq::socket_t subscriber = zmq::socket_t(context, ZMQ_SUB);
-
-    bool first = true;
 
 };
 

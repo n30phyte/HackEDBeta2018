@@ -1,11 +1,9 @@
-
 import zmq
-context = zmq.Context()
-socket = context.socket(zmq.SUB)
-socket.connect("tcp://localhost:5555")
-socket.setsockopt_string(zmq.SUBSCRIBE, "gamestate")
-print("Subscribing")
-while True:
-    #  Wait for next request from client
-    message = socket.recv_string()
-    print(message)
+
+context2 = zmq.Context()
+socket2 = context2.socket(zmq.PUB)
+socket2.bind("tcp://*:5566")
+
+while (True):
+    print("Senidn")
+    socket2.send_string("gameinput UP\0")

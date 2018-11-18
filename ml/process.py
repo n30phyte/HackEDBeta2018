@@ -42,12 +42,14 @@ def getGameState():
 def sendGameInput(action):
     print("Send input")
     print(action)
-    context = zmq.Context()
-    socket = context.socket(zmq.PUB)
-    socket.bind("tcp://*:5556")
+    context2 = zmq.Context()
+    socket2 = context2.socket(zmq.PUB)
+    socket2.bind("tcp://*:5556")
 
     if action == 2:
-        socket.send_string("gameinput UP\0")
+        print("Sending up")
+        socket2.send_string("gameinput UP\0")
 
     elif action == 5:
-        socket.send_string("gameinput DOWN\0")
+        print("Sending down")
+        socket2.send_string("gameinput DOWN\0")
