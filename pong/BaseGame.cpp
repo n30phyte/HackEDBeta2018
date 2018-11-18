@@ -57,10 +57,10 @@ void GameStateManager::Step() {
 }
 void GameStateManager::MovePaddle(int paddle, BaseInput::InputDirection direction) {
     if (direction == BaseInput::InputDirection::DOWN) {
-        std::cout << "Moving paddle down" << std::endl;
+        // std::cout << "Moving paddle down" << std::endl;
         players[paddle]->setVelocityY(2);
     } else if (direction == BaseInput::InputDirection::UP) {
-        std::cout << "Moving paddle up" << std::endl;
+        // std::cout << "Moving paddle up" << std::endl;
         players[paddle]->setVelocityY(-2);
     } else if (direction == BaseInput::InputDirection::NONE) {
         players[paddle]->setVelocityY(0);
