@@ -25,9 +25,9 @@ input_dim = 80 * 80
 gamma = 0.99
 update_frequency = 5
 learning_rate = 0.001
-resume = False
-render = False
-EPISODES = 8000
+resume = True
+render = True
+EPISODES = 20
 
 #Initialize
 env = gym.make("Pong-v0")
@@ -41,8 +41,8 @@ reward_sum = 0
 episode_number = 0
 train_X = []
 train_y = []
-game_rewards = []
-mean_rewards = []
+game_f = open('game_rewards.txt','w')
+mean_f = open('mean_rewards.txt', 'w')
 
 def pong_preprocess_screen(I):
   I = I[35:195] 
@@ -140,15 +140,13 @@ while episode_number < EPISODES:
     #Reset the current environment nad print the current results
     running_reward = reward_sum if running_reward is None else running_reward * 0.99 + reward_sum * 0.01
     print('Environment reset imminent. Total Episode Reward: %f. Running Mean: %f' % (reward_sum, running_reward))
-    game_rewards.append(reward_sum)
-    mean_rewards.append(running_reward)
+    game_f.write(str(reward_sum) + '\n')
+    mean_f.write(str(running_reward) + '\n')
     reward_sum = 0
     observation = env.reset()
     prev_x = None
   if reward != 0:
     print(('Episode %d Result: ' % episode_number) + ('Defeat!' if reward == -1 else 'VICTORY!'))
 
-print('Pickling reward data')
-with open('reward.out', 'wb') as fobj:
-    pickle.dump([game_rewards, mean_rewards], fobj)
-print('Done pickling')
+game_f.close()
+mean_f.close()
