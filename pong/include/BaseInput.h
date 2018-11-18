@@ -7,7 +7,11 @@
 
 class BaseInput {
 public:
-    virtual void Poll() = 0;
+    enum InputDirection {
+        UP,
+        DOWN,
+    };
+    virtual InputDirection Poll() = 0;
 };
 
 #endif //HACKEDBETA_BASEINPUT_H

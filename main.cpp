@@ -8,17 +8,23 @@ int main(int argc, char *argv[]) {
 
     BaseGame pong;
 
-    if(argc == 1) {
+    if (argc == 1) {
         std::cout << "Running in Graphics mode." << std::endl;
 
-    }
-    else
-    {
+        auto * input0 = new KeyboardInput(0);
+        auto * input1 = new KeyboardInput(1);
+
+        InputManager inputs(input0, input1);
+
+        pong.setInputManager(inputs);
+
+    } else {
         std::cout << "Running in Headless mode." << std::endl;
-
-        InputManager<AIInput, AIInput> inputs;
-
     }
 
     pong.Start();
+
+    while (pong.is_running) {
+        pong.Loop();
+    }
 }

@@ -11,7 +11,8 @@ add_library(pong
         HeadlessOutput.cpp
         InputManager.cpp
         KeyboardInput.cpp
-        OutputManager.cpp GameObjects.cpp include/GameObjects.h)
+        OutputManager.cpp
+        GameObject.cpp)
 
 # Look for SFML CMake modules
 list(APPEND CMAKE_MODULE_PATH "/usr/share/cmake/Modules")

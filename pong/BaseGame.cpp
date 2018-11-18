@@ -4,37 +4,34 @@
 
 #include "BaseGame.h"
 
-void GameStateManager::scoreUp(Paddle *player) {
-    if (player == player1) {
-        score1++;
-    } else if (player == player2) {
-        score2++;
-    }
-
-    ball->Reset();
-    player1->Reset();
-    player2->Reset();
+void GameStateManager::ScoreCheck() {
+    // Check ball location
+    // If ball is < 8, Player1++
+    // else player2++
+    Reset();
 }
 
 GameStateManager::GameStateManager() {
 
-    quit = false;
-    score1 = score2 = 0;
-    up1 = 'w';
-    down1 = 's';
-    up2 = 'i';
-    down2 = 'k';
-    width = w, height = h;
-    ball = new Ball(w / 2, h / 2);
-    player1 = new Paddle(1, h / 2 - 3);
-    player2 = new Paddle(w - 2, h / 2 - 3);
+    scores[0] = 0;
+    scores[1] = 0;
+
+    ball = Ball(2, 1);
+    players[0] = Paddle(8);
+    players[1] = Paddle(40-8);
+
+}
+void GameStateManager::Reset() {
+    ball.Reset();
+    players[0].Reset();
+    players[1].Reset();
+
 }
 
 void BaseGame::Start() {
-    BaseGame::Loop();
+    is_running = true;
 
-    running = true;
-    // setup?!?!?
+    gameState = GameStateManager();
 }
 
 void BaseGame::setInputManager(InputManager<BaseInput, BaseInput> manager) {
@@ -43,5 +40,8 @@ void BaseGame::setInputManager(InputManager<BaseInput, BaseInput> manager) {
 }
 
 void BaseGame::Stop() {
-    running = false;
+    is_running = false;
+}
+void BaseGame::Loop() {
+    gameState.Step();
 }

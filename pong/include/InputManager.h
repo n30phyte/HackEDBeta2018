@@ -12,15 +12,14 @@
 #include "KeyboardInput.h"
 #include "AIInput.h"
 
-
-template<class InputType1, class InputType2>
 class InputManager {
 public:
-    InputManager();
-    ~InputManager() = 0;
+    InputManager(BaseInput *, BaseInput *);
+    BaseInput::InputDirection GetInput1();
+    BaseInput::InputDirection GetInput2();
 private:
-    InputType1 player1Input;
-    InputType2 player2Input;
+    BaseInput *Input1;
+    BaseInput *Input2;
 };
 
 #endif //HACKEDBETA_INPUTMANAGER_H
