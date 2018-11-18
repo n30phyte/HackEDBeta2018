@@ -18,16 +18,36 @@ observation = env.reset()
 
 input_dim = 80 * 80
 number_of_inputs = 6
+learning_rate = 0.001
 
-model = Sequential()
-model.add(Reshape((1,80,80), input_shape=(input_dim,)))
-model.add(Convolution2D(32, 9, 9, subsample=(4, 4), border_mode='same', activation='relu', init='he_uniform'))
-model.add(Flatten())
-model.add(Dense(16, activation='relu', init='he_uniform'))
-model.add(Dense(number_of_inputs, activation='softmax'))
-model.compile(loss='categorical_crossentropy', optimizer=opt)
+def make_shitty():
+    model = Sequential()
+    model.add(Reshape((1,80,80), input_shape=(input_dim,)))
+    model.add(Convolution2D(32, 9, 9, subsample=(4, 4), border_mode='same', activation='relu', init='he_uniform'))
+    model.add(Flatten())
+    model.add(Dense(16, activation='relu', init='he_uniform'))
+    model.add(Dense(number_of_inputs, activation='softmax'))
+    opt = Adam(learning_rate)
+    model.compile(loss='categorical_crossentropy', optimizer=opt)
+    return model
 
-model.load_weights('pong_model_checkpoint.h5')
+def make_good():
+    model = Sequential()
+    model.add(Reshape((1, 80, 80), input_shape=(input_dim,)))
+    model.add(Convolution2D(32, 6, 6, subsample=(3, 3), border_mode='same',
+                            activation='relu', init='he_uniform'))
+    model.add(Flatten())
+    model.add(Dense(64, activation='relu', init='he_uniform'))
+    model.add(Dense(32, activation='relu', init='he_uniform'))
+    model.add(Dense(number_of_inputs, activation='softmax'))
+    opt = Adam(lr=learning_rate)
+    # See note regarding crossentropy in cartpole_reinforce.py
+    model.compile(loss='categorical_crossentropy', optimizer=opt)
+    return model
+
+
+model = make_good()
+model.load_weights('pong_reinforce.h5')
 
 prev_x = None
 
@@ -42,4 +62,4 @@ if __name__ =="__main__":
         aprob = aprob/np.sum(aprob)
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
 
-        process.sendGameInput(action);
+        process.sendGameInput(action)
