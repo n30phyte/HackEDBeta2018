@@ -3,9 +3,31 @@ project(HackEDBeta)
 
 include_directories(include)
 
-set(CMAKE_CXX_STANDARD 17)
+add_library(pong
+        AIInput.cpp
+        BaseGame.cpp
+        BaseOutput.cpp
+        GraphicsOutput.cpp
+        HeadlessOutput.cpp
+        InputManager.cpp
+        KeyboardInput.cpp
+        OutputManager.cpp GameObjects.cpp include/GameObjects.h)
 
-set(EXECUTABLE_NAME "ai_pong")
-add_executable(${EXECUTABLE_NAME} main.cpp BaseGame.cpp include/BaseGame.h)
+# Look for SFML CMake modules
+list(APPEND CMAKE_MODULE_PATH "/usr/share/cmake/Modules")
+list(APPEND CMAKE_MODULE_PATH "/usr/share/SFML/cmake/Modules")
 
-target_link_libraries(${EXECUTABLE_NAME} sfml-graphics sfml-window)
+# Find Boost
+find_package(Boost REQUIRED)
+
+# Find SFML
+find_package(SFML 2 REQUIRED network audio graphics window system)
+
+# Find protobuf
+find_package(Protobuf REQUIRED)
+
+
+include_directories(${Protobuf_INCLUDE_DIRS})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${SFML_INCLUDE_DIR})
+
