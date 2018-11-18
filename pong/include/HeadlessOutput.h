@@ -9,7 +9,7 @@
 class HeadlessOutput : public BaseOutput {
 public:
     explicit HeadlessOutput();
-    void Update(std::vector<std::vector<bool>>);
+    void Update(std::vector<int>, std::vector<int>, std::vector<int>);
 
 private:
 };

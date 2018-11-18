@@ -6,14 +6,20 @@
 #define HACKEDBETA_GRAPHICSOUTPUT_H
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
 #include "BaseOutput.h"
 
 class GraphicsOutput : public BaseOutput {
 public:
     GraphicsOutput();
-    void Update(std::vector<std::vector<bool>>);
+    void Update(std::vector<int>, std::vector<int>, std::vector<int>);
 private:
-    sf::RenderWindow _window = sf::RenderWindow(sf::VideoMode(80, 80), "Player vs Player");
+    sf::RenderWindow _window = sf::RenderWindow(sf::VideoMode(800, 800), "Player vs Player");
+
+    void generateBoard() {
+
+    }
 };
 
 #endif //HACKEDBETA_GRAPHICSOUTPUT_H

@@ -26,8 +26,8 @@ public:
 
     void MovePaddle(int, BaseInput::InputDirection);
 
-    std::vector<std::vector<bool>> getBoard();
-
+    std::vector<int> GetPaddleLocation(int);
+    std::vector<int> GetBallLocation();
 private:
     // Game properties
     const static uint width = 80;
@@ -41,8 +41,6 @@ private:
 
     void CollisionCheck();
     void ScoreCheck();
-
-    std::vector<std::vector<bool>> board;
 
 };
 
@@ -73,7 +71,6 @@ private:
 
 
     GameStateManager gameState;
-    sf::RenderWindow * windowContext;
 };
 
 #endif //HACKEDBETA_BASEGAME_H

@@ -25,8 +25,20 @@ GameStateManager::GameStateManager() {
     ball = Ball();
     players[0] = new Paddle(8);
     players[1] = new Paddle(40 - 8);
+}
 
-    board = std::vector<std::vector<bool>>(80, std::vector<bool>(80, false));
+std::vector<int> GameStateManager::GetBallLocation() {
+    std::vector<int> output;
+    output.emplace_back(ball.getX());
+    output.emplace_back(ball.getY());
+    return output;
+}
+
+std::vector<int> GameStateManager::GetPaddleLocation(int playerID) {
+    std::vector<int> output;
+    output.emplace_back(players[playerID]->getX());
+    output.emplace_back(players[playerID]->getY());
+    return output;
 }
 
 void GameStateManager::Reset() {
@@ -40,16 +52,6 @@ void GameStateManager::Step() {
     ball.step();
     players[0]->step();
     players[1]->step();
-
-    board[ball.getX()][ball.getY()] = true;
-    board[ball.getX()][ball.getY() + 1] = true;
-
-    for (int i = -4; i < 5; i++) {
-        board[players[0]->getX()][players[0]->getY() + i] = true;
-        board[players[0]->getX() + 1][players[0]->getY() + i] = true;
-        board[players[1]->getX()][players[1]->getY() + i] = true;
-        board[players[1]->getX() + 1][players[1]->getY() + i] = true;
-    }
 
     ScoreCheck();
     CollisionCheck();
@@ -74,9 +76,6 @@ void GameStateManager::CollisionCheck() {
     if (ball.getY() < 0 || ball.getY() > 80) {
         ball.setVelocityY(-ball.getVelocityY());
     }
-}
-std::vector<std::vector<bool>> GameStateManager::getBoard() {
-    return board;
 }
 
 void BaseGame::Start() {
@@ -104,20 +103,11 @@ void BaseGame::Loop() {
     }
     gameState.Step();
 
-    auto _board = gameState.getBoard();
-
-    for (int y = 0; y < 80; y++) {
-        for (int x = 0; x < 80; x++) {
-            std::cout << _board[x][y];
-        }
-        std::cout << std::endl;
-    }
-
     if (SFMLOutput != nullptr) {
-        SFMLOutput->Update(_board);
+        SFMLOutput->Update(gameState.GetBallLocation(), gameState.GetPaddleLocation(0), gameState.GetPaddleLocation(1));
     }
     if (AIOutput != nullptr) {
-        AIOutput->Update(_board);
+        AIOutput->Update(gameState.GetBallLocation(), gameState.GetPaddleLocation(0), gameState.GetPaddleLocation(1));
     }
 
 }

@@ -4,9 +4,10 @@
 
 #include <HeadlessOutput.h>
 
-void HeadlessOutput::Update(std::vector<std::vector<bool>>) {
+void HeadlessOutput::Update(std::vector<int> ball_location, std::vector<int> paddle0_location, std::vector<int>paddle1_location) {
 
 }
 HeadlessOutput::HeadlessOutput() {
 
 }
+

@@ -8,7 +8,7 @@
 
 class BaseOutput {
 public:
-    virtual void Update(std::vector<std::vector<bool>>) = 0;
+    virtual void Update(std::vector<int> ball_location, std::vector<int> paddle0_location, std::vector<int>paddle1_location) = 0;
 };
 
 #endif //HACKEDBETA_BASEOUTPUT_H
