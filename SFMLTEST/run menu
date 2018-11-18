@@ -1,0 +1,3 @@
+ g++ -c main.cpp Menu.cpp
+g++ main.o Menu.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+./sfml-app
