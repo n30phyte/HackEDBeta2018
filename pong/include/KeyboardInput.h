@@ -10,11 +10,12 @@
 
 class KeyboardInput : public BaseInput {
 public:
+
     KeyboardInput();
-    explicit KeyboardInput(int);
+    explicit KeyboardInput(BaseInput::PlayerSide);
     InputDirection Poll();
 private:
-    int playerID;
+    BaseInput::PlayerSide side;
 };
 
 #endif //HACKEDBETA_KEYBOARDINPUT_H

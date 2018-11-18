@@ -4,27 +4,27 @@
 
 #include <KeyboardInput.h>
 
-KeyboardInput::KeyboardInput(int PlayerID) {
-    playerID = PlayerID;
+KeyboardInput::KeyboardInput(BaseInput::PlayerSide playerSide) {
+    side = playerSide;
 }
 BaseInput::InputDirection KeyboardInput::Poll() {
-    if (playerID == 0) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            return BaseInput::InputDirection::UP;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            return BaseInput::InputDirection::DOWN;
-        }
+    switch (side) {
+        case LEFT:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+                return BaseInput::InputDirection::UP;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+                return BaseInput::InputDirection::DOWN;
+            }
+            break;
+        case RIGHT:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                return BaseInput::InputDirection::UP;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                return BaseInput::InputDirection::DOWN;
+            }
+            break;
     }
-    if (playerID == 1) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            return BaseInput::InputDirection::UP;
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            return BaseInput::InputDirection::DOWN;
-        }
-    }
-}
-KeyboardInput::KeyboardInput() : KeyboardInput(0) {
-
+    return BaseInput::InputDirection::NONE;
 }

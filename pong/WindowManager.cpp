@@ -10,7 +10,6 @@ WindowManager::WindowManager(BaseGame game) {
 }
 
 void WindowManager::Render() {
-
     windowContext.setPosition(sf::Vector2i(10, 50));
     Menu menu(windowContext.getSize().x, windowContext.getSize().y);
 
@@ -32,14 +31,14 @@ void WindowManager::Render() {
                                 case 0:
                                     std::cout << "Play button pressed" << std::endl;
                                     windowContext.clear();
-                                    windowContext.display();
+                                    windowContext.close();
 
                                     Game.SetMode(BaseGame::GameMode::PlayervsPlayer);
+
                                     Game.Start();
                                     while(Game.is_running)
                                     {
                                         Game.Loop();
-
                                     }
                                     break;
                                 case 1:

@@ -9,10 +9,10 @@ void GameStateManager::ScoreCheck() {
     // If ball is < 8, Player1++
     // else player2++
     if (ball.getX() < 8) {
-        scores[1]++;
+        scores[0]++;
     }
     if (ball.getX() > 72) {
-        scores[0]++;
+        scores[1]++;
     }
     Reset();
 }
@@ -26,6 +26,7 @@ GameStateManager::GameStateManager() {
     players[0] = new Paddle(8);
     players[1] = new Paddle(40 - 8);
 
+    board = std::vector<std::vector<bool>>(80, std::vector<bool>(80, false));
 }
 
 void GameStateManager::Reset() {
@@ -41,15 +42,15 @@ void GameStateManager::Step() {
     players[1]->step();
 
     board[ball.getX()][ball.getY()] = true;
-    board[ball.getX()][ball.getY()+1] = true;
+    board[ball.getX()][ball.getY() + 1] = true;
 
     for (int i = -4; i < 5; i++) {
-        board[players[0]->getX()][players[0]->getY()+i] = true;
-        board[players[0]->getX()+1][players[0]->getY()+i] = true;
-        board[players[1]->getX()][players[1]->getY()+i] = true;
-        board[players[1]->getX()+1][players[1]->getY()+i] = true;
+        board[players[0]->getX()][players[0]->getY() + i] = true;
+        board[players[0]->getX() + 1][players[0]->getY() + i] = true;
+        board[players[1]->getX()][players[1]->getY() + i] = true;
+        board[players[1]->getX() + 1][players[1]->getY() + i] = true;
     }
-    
+
     ScoreCheck();
     CollisionCheck();
 }
@@ -58,6 +59,8 @@ void GameStateManager::MovePaddle(int paddle, BaseInput::InputDirection directio
         players[paddle]->setVelocityY(-2);
     } else if (direction == BaseInput::InputDirection::UP) {
         players[paddle]->setVelocityY(2);
+    } else if (direction == BaseInput::InputDirection::NONE){
+        players[paddle]->setVelocityY(0);
     }
 
 }
@@ -86,13 +89,36 @@ void BaseGame::Stop() {
 }
 
 void BaseGame::Loop() {
-    gameState.MovePaddle(0, inputManager->GetInput1());
-    gameState.MovePaddle(0, inputManager->GetInput2());
+
+    if (HumanInput != nullptr) {
+        gameState.MovePaddle(0, HumanInput->Poll());
+
+    }
+    if (AiInput != nullptr) {
+        gameState.MovePaddle(0, AiInput->Poll());
+
+    }
+    if (HumanInput != nullptr) {
+        gameState.MovePaddle(0, HumanInput2->Poll());
+
+    }
     gameState.Step();
 
-    graphicsManager->setGrid(gameState.getBoard());
-    graphicsManager->Update0();
-    graphicsManager->Update1();
+    auto _board = gameState.getBoard();
+
+    for (int y = 0; y < 80; y++) {
+        for (int x = 0; x < 80; x++) {
+            std::cout << _board[x][y];
+        }
+        std::cout << std::endl;
+    }
+
+    if (SFMLOutput != nullptr) {
+        SFMLOutput->Update(_board);
+    }
+    if (AIOutput != nullptr) {
+        AIOutput->Update(_board);
+    }
 
 }
 BaseGame::BaseGame() {
@@ -100,34 +126,21 @@ BaseGame::BaseGame() {
 }
 void BaseGame::SetMode(BaseGame::GameMode mode) {
 
-    BaseInput *input0 = nullptr;
-    BaseInput *input1 = nullptr;
-
-    BaseOutput *output0 = nullptr;
-    BaseOutput *output1 = nullptr;
-
     switch (mode) {
-        case AIvsAI:
-            input0 = new AIInput();
-            input1 = new AIInput();
-            output0 = new HeadlessOutput(0);
-            output1 = new HeadlessOutput(1);
-            break;
         case AIvsPlayer:
-            input0 = new AIInput();
-            input1 = new KeyboardInput(0);
-            output0 = new GraphicsOutput();
-            output1 = new HeadlessOutput(0);
-
+            AiInput = new AIInput();
+            HumanInput = new KeyboardInput(BaseInput::PlayerSide::LEFT);
+            HumanInput2 = nullptr;
+            SFMLOutput = new GraphicsOutput();
+            AIOutput = new HeadlessOutput();
             break;
         case PlayervsPlayer:
-            input0 = new KeyboardInput(0);
-            input1 = new KeyboardInput(1);
-            output0 = new GraphicsOutput();
+            AiInput = nullptr;
+            HumanInput = new KeyboardInput(BaseInput::PlayerSide::LEFT);
+            HumanInput2 = new KeyboardInput(BaseInput::PlayerSide::RIGHT);
+            SFMLOutput = new GraphicsOutput();
+            AIOutput = nullptr;
             break;
     }
-
-    inputManager = new InputManager(input0, input1);
-    graphicsManager = new OutputManager(output0, output1);
 
 }

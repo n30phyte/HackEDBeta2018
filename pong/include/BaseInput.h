@@ -7,9 +7,15 @@
 
 class BaseInput {
 public:
+    enum PlayerSide {
+        LEFT,
+        RIGHT
+    };
+
     enum InputDirection {
         UP,
         DOWN,
+        NONE
     };
     virtual InputDirection Poll() = 0;
 };

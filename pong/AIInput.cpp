@@ -7,3 +7,6 @@
 BaseInput::InputDirection AIInput::Poll() {
     return UP;
 }
+AIInput::AIInput() {
+
+}
