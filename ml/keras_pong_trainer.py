@@ -1,11 +1,14 @@
+# This code is modified from:
+# https://github.com/mkturkcan/Keras-Pong/blob/master/keras_pong.py
+
 # Based on the excellent
 # https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5
 # and uses Keras.
 import os
 import gym
-import argparse
 import sys, glob
 import numpy as np
+import pickle
 from keras import backend as K
 from keras.models import Sequential
 from keras.callbacks import ModelCheckpoint
@@ -20,10 +23,11 @@ from keras.layers.convolutional import UpSampling2D, Convolution2D
 #Script Parameters
 input_dim = 80 * 80
 gamma = 0.99
-update_frequency = 1
+update_frequency = 5
 learning_rate = 0.001
 resume = False
-render = True
+render = False
+EPISODES = 8000
 
 #Initialize
 env = gym.make("Pong-v0")
@@ -37,6 +41,8 @@ reward_sum = 0
 episode_number = 0
 train_X = []
 train_y = []
+game_rewards = []
+mean_rewards = []
 
 def pong_preprocess_screen(I):
   I = I[35:195] 
@@ -78,7 +84,7 @@ def learning_model(input_dim=80*80, model_type=1):
 model = learning_model()
 
 #Begin training
-while True:
+while episode_number < EPISODES:
   if render: 
     env.render()
   #Preprocess, consider the frame difference as features
@@ -134,8 +140,15 @@ while True:
     #Reset the current environment nad print the current results
     running_reward = reward_sum if running_reward is None else running_reward * 0.99 + reward_sum * 0.01
     print('Environment reset imminent. Total Episode Reward: %f. Running Mean: %f' % (reward_sum, running_reward))
+    game_rewards.append(reward_sum)
+    mean_rewards.append(running_reward)
     reward_sum = 0
     observation = env.reset()
     prev_x = None
   if reward != 0:
     print(('Episode %d Result: ' % episode_number) + ('Defeat!' if reward == -1 else 'VICTORY!'))
+
+print('Pickling reward data')
+with open('reward.out', 'wb') as fobj:
+    pickle.dump([game_rewards, mean_rewards], fobj)
+print('Done pickling')
