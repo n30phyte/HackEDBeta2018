@@ -6,9 +6,9 @@
 #define HACKEDBETA_HEADLESSOUTPUT_H
 #include "BaseOutput.h"
 #include <vector>
-#include "pipe.pb.h"
 #include <sstream>
 #include <zmq.hpp>
+#include <iostream>
 
 class HeadlessOutput : public BaseOutput {
 public:
