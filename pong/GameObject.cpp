@@ -3,8 +3,6 @@
 //
 #include <GameObject.h>
 
-#include "GameObject.h"
-
 void GameObject::setDirection(Direction target) {
     direction = target;
 }

@@ -2,7 +2,7 @@
 // Created by n30phyte on 17/11/18.
 //
 
-#include "BaseGame.h"
+#include <BaseGame.h>
 
 void GameStateManager::ScoreCheck() {
     // Check ball location
@@ -17,8 +17,8 @@ GameStateManager::GameStateManager() {
     scores[1] = 0;
 
     ball = Ball(2, 1);
-    players[0] = Paddle(8);
-    players[1] = Paddle(40-8);
+    players[0] = new Paddle(8);
+    players[1] = new Paddle(40-8);
 
 }
 void GameStateManager::Reset() {
@@ -44,4 +44,7 @@ void BaseGame::Stop() {
 }
 void BaseGame::Loop() {
     gameState.Step();
+}
+BaseGame::BaseGame() {
+
 }

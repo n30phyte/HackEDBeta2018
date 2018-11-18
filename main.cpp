@@ -11,10 +11,8 @@ int main(int argc, char *argv[]) {
     if (argc == 1) {
         std::cout << "Running in Graphics mode." << std::endl;
 
-        auto * input0 = new KeyboardInput(0);
-        auto * input1 = new KeyboardInput(1);
 
-        InputManager inputs(input0, input1);
+        InputManager<KeyboardInput, KeyboardInput> inputs;
 
         pong.setInputManager(inputs);
 

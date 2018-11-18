@@ -22,7 +22,7 @@ private:
     uint scores[2] ;
 
     Ball ball = Ball();
-    Paddle players[2];
+    Paddle* players[2];
 
     void Reset();
 
@@ -33,6 +33,7 @@ private:
 
 class BaseGame {
 public:
+    BaseGame();
     void Start();
     void Loop();
     void Stop();

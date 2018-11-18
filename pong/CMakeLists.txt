@@ -9,9 +9,7 @@ add_library(pong
         BaseOutput.cpp
         GraphicsOutput.cpp
         HeadlessOutput.cpp
-        InputManager.cpp
         KeyboardInput.cpp
-        OutputManager.cpp
         GameObject.cpp)
 
 # Look for SFML CMake modules
