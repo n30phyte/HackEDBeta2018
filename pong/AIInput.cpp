@@ -5,20 +5,14 @@
 #include <AIInput.h>
 
 BaseInput::InputDirection AIInput::Poll() {
-    if(first)
-    {
+    if (first) {
         first = false;
         return BaseInput::InputDirection::NONE;
-
     }
-    std::string command = "UP";
+    std::string command = "";
     zmq::message_t input;
-    if (!subscriber.connected()) {
-        subscriber.recv(&input);
-    } else {
-        return BaseInput::InputDirection::UP;
+    subscriber.recv(&input, ZMQ_DONTWAIT);
 
-    }
     std::istringstream iss(static_cast<char *>(input.data()));
     std::string filter;
     iss >> filter >> command;
