@@ -30,10 +30,10 @@ void WindowManager::Render() {
                         case sf::Keyboard::Return:
                             switch (menu.GetPressedItem()) {
                                 case 0:
-                                    std::cout << "Play button pressed" << std::endl;
+                                    std::cout << "PvP button pressed" << std::endl;
                                     break;
                                 case 1:
-                                    std::cout << "option pressed" << std::endl;
+                                    std::cout << "PvA button pressed" << std::endl;
                                     break;
                                 case 2:
                                     windowContext.close();
