@@ -61,12 +61,12 @@ observation = env.reset()
 
 if __name__ =="__main__":
     while(True):
-        
+        env.render()
         cur_x = pong_preprocess_screen(observation);
         x = cur_x - prev_x if prev_x is not None else np.zeros(input_dim)
         prev_x = cur_x
         aprob = ((model.predict(x.reshape([1,x.shape[0]]), batch_size=1).flatten()))
         aprob = aprob/np.sum(aprob)
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
-        
+
         observation, reward, done, info = env.step(action)
