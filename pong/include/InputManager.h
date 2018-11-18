@@ -12,39 +12,21 @@
 #include "KeyboardInput.h"
 #include "AIInput.h"
 
-template<typename InputType1, typename InputType2>
 class InputManager {
 public:
-    InputManager();
-    BaseInput::InputDirection GetInput1();
-    BaseInput::InputDirection GetInput2();
+    InputManager(BaseInput *input0, BaseInput *input1) {
+        Input0 = input0;
+        Input1 = input1;
+    }
+    BaseInput::InputDirection GetInput1() {
+        return Input0->Poll();
+    }
+    BaseInput::InputDirection GetInput2() {
+        return Input1->Poll();
+
+    }
 private:
-    InputType1 Input1;
-    InputType2 Input2;
+    BaseInput *Input0;
+    BaseInput *Input1;
 };
-
-template<typename InputType1, typename InputType2>
-BaseInput::InputDirection InputManager<InputType1, InputType2>::GetInput1() {
-    return Input1.Poll();
-}
-
-template<typename InputType1, typename InputType2>
-BaseInput::InputDirection InputManager<InputType1, InputType2>::GetInput2() {
-    return Input2.Poll();
-}
-
-template<typename InputType1, typename InputType2>
-InputManager<InputType1, InputType2>::InputManager() {
-    static_assert(
-            std::is_base_of<BaseInput, InputType1>::value,
-            "Input1 must be a base of BaseInput"
-    );
-
-    static_assert(
-            std::is_base_of<BaseInput, InputType2>::value,
-            "Input2 must be a base of BaseInput"
-    );
-
-}
-
 #endif //HACKEDBETA_INPUTMANAGER_H

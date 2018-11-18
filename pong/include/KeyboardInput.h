@@ -8,8 +8,9 @@
 #include <SFML/Window/Keyboard.hpp>
 #include "BaseInput.h"
 
-class KeyboardInput : BaseInput {
+class KeyboardInput : public BaseInput {
 public:
+    KeyboardInput();
     explicit KeyboardInput(int);
     InputDirection Poll();
 private:

@@ -6,8 +6,8 @@
 #define HACKEDBETA_AIINPUT_H
 
 #include "BaseInput.h"
-class AIInput : BaseInput {
-
+class AIInput : public BaseInput {
+    InputDirection Poll() override;
 };
 
 #endif //HACKEDBETA_AIINPUT_H

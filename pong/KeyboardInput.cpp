@@ -25,3 +25,6 @@ BaseInput::InputDirection KeyboardInput::Poll() {
         }
     }
 }
+KeyboardInput::KeyboardInput() : KeyboardInput(0) {
+
+}
