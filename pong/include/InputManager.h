@@ -12,15 +12,39 @@
 #include "KeyboardInput.h"
 #include "AIInput.h"
 
-
-template<class InputType1, class InputType2>
+template<typename InputType1, typename InputType2>
 class InputManager {
 public:
     InputManager();
-    ~InputManager() = 0;
+    BaseInput::InputDirection GetInput1();
+    BaseInput::InputDirection GetInput2();
 private:
-    InputType1 player1Input;
-    InputType2 player2Input;
+    InputType1 Input1;
+    InputType2 Input2;
 };
+
+template<typename InputType1, typename InputType2>
+BaseInput::InputDirection InputManager<InputType1, InputType2>::GetInput1() {
+    return Input1.Poll();
+}
+
+template<typename InputType1, typename InputType2>
+BaseInput::InputDirection InputManager<InputType1, InputType2>::GetInput2() {
+    return Input2.Poll();
+}
+
+template<typename InputType1, typename InputType2>
+InputManager<InputType1, InputType2>::InputManager() {
+    static_assert(
+            std::is_base_of<BaseInput, InputType1>::value,
+            "Input1 must be a base of BaseInput"
+    );
+
+    static_assert(
+            std::is_base_of<BaseInput, InputType2>::value,
+            "Input2 must be a base of BaseInput"
+    );
+
+}
 
 #endif //HACKEDBETA_INPUTMANAGER_H

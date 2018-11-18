@@ -12,7 +12,7 @@
 #include "HeadlessOutput.h"
 #include "GraphicsOutput.h"
 
-template<class OutputType>
+template<typename OutputType>
 class OutputManager {
 
 public:

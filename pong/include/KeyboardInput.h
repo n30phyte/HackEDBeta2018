@@ -5,10 +5,15 @@
 #ifndef HACKEDBETA_KEYBOARDINPUT_H
 #define HACKEDBETA_KEYBOARDINPUT_H
 
+#include <SFML/Window/Keyboard.hpp>
 #include "BaseInput.h"
 
-class KeyboardInput : BaseInput{
-
+class KeyboardInput : BaseInput {
+public:
+    explicit KeyboardInput(int);
+    InputDirection Poll();
+private:
+    int playerID;
 };
 
 #endif //HACKEDBETA_KEYBOARDINPUT_H
