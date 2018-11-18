@@ -9,8 +9,14 @@
 #include <vector>
 
 #include "GameObject.h"
-#include "InputManager.h"
-#include "OutputManager.h"
+
+#include "BaseInput.h"
+#include "KeyboardInput.h"
+#include "AIInput.h"
+
+#include "BaseOutput.h"
+#include "HeadlessOutput.h"
+#include "GraphicsOutput.h"
 
 class GameStateManager {
 public:
@@ -57,10 +63,16 @@ public:
 
     void SetMode(GameMode);
 
-    void SetWindow(sf::RenderWindow &);
 private:
-    InputManager *inputManager;
-    OutputManager * graphicsManager;
+    GraphicsOutput  * SFMLOutput;
+    HeadlessOutput * AIOutput;
+
+    KeyboardInput* HumanInput;
+    AIInput * AiInput;
+
+    KeyboardInput* HumanInput2;
+
+
     GameStateManager gameState;
     sf::RenderWindow * windowContext;
 };

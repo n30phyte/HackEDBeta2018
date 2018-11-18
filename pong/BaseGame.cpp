@@ -42,13 +42,13 @@ void GameStateManager::Step() {
     players[1]->step();
 
     board[ball.getX()][ball.getY()] = true;
-    board[ball.getX()][ball.getY()+1] = true;
+    board[ball.getX()][ball.getY() + 1] = true;
 
     for (int i = -4; i < 5; i++) {
-        board[players[0]->getX()][players[0]->getY()+i] = true;
-        board[players[0]->getX()+1][players[0]->getY()+i] = true;
-        board[players[1]->getX()][players[1]->getY()+i] = true;
-        board[players[1]->getX()+1][players[1]->getY()+i] = true;
+        board[players[0]->getX()][players[0]->getY() + i] = true;
+        board[players[0]->getX() + 1][players[0]->getY() + i] = true;
+        board[players[1]->getX()][players[1]->getY() + i] = true;
+        board[players[1]->getX() + 1][players[1]->getY() + i] = true;
     }
 
     ScoreCheck();
@@ -87,13 +87,29 @@ void BaseGame::Stop() {
 }
 
 void BaseGame::Loop() {
-    gameState.MovePaddle(0, inputManager->GetInput1());
-    gameState.MovePaddle(0, inputManager->GetInput2());
+
+    if(HumanInput != nullptr){
+        gameState.MovePaddle(0, HumanInput->Poll());
+
+    }
+    if(AiInput != nullptr){
+        gameState.MovePaddle(0, AiInput->Poll());
+
+    }
+    if(HumanInput != nullptr){
+        gameState.MovePaddle(0, HumanInput2->Poll());
+
+    }
     gameState.Step();
 
-    graphicsManager->setGrid(gameState.getBoard());
-    graphicsManager->Update0();
-    graphicsManager->Update1();
+    auto _board = gameState.getBoard();
+
+    if (SFMLOutput != nullptr) {
+        SFMLOutput->Update(_board);
+    }
+    if (AIOutput != nullptr) {
+        AIOutput->Update(_board);
+    }
 
 }
 BaseGame::BaseGame() {
@@ -101,37 +117,18 @@ BaseGame::BaseGame() {
 }
 void BaseGame::SetMode(BaseGame::GameMode mode) {
 
-    BaseInput *input0 = nullptr;
-    BaseInput *input1 = nullptr;
-
-    BaseOutput *output0 = nullptr;
-    BaseOutput *output1 = nullptr;
-
     switch (mode) {
-        case AIvsAI:
-            input0 = new AIInput();
-            input1 = new AIInput();
-            output0 = new HeadlessOutput(0);
-            output1 = new HeadlessOutput(1);
-            break;
         case AIvsPlayer:
-            input0 = new AIInput();
-            input1 = new KeyboardInput(0);
-            output0 = new GraphicsOutput(*windowContext);
-            output1 = new HeadlessOutput(0);
-
+            AiInput = new AIInput();
+            HumanInput = new KeyboardInput(0);
+            SFMLOutput = new GraphicsOutput();
+            AIOutput = new HeadlessOutput();
             break;
         case PlayervsPlayer:
-            input0 = new KeyboardInput(0);
-            input1 = new KeyboardInput(1);
-            output0 = new GraphicsOutput(*windowContext);
+            HumanInput = new KeyboardInput(0);
+            HumanInput2 = new KeyboardInput(1);
+            SFMLOutput = new GraphicsOutput();
             break;
     }
 
-    inputManager = new InputManager(input0, input1);
-    graphicsManager = new OutputManager(output0, output1);
-
-}
-void BaseGame::SetWindow(sf::RenderWindow &WindowContext) {
-    windowContext = &WindowContext;
 }

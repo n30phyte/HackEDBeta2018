@@ -8,11 +8,10 @@
 
 class HeadlessOutput : public BaseOutput {
 public:
-    explicit HeadlessOutput(int);
+    explicit HeadlessOutput();
     void Update(std::vector<std::vector<bool>>);
 
 private:
-    int ID = 0;
 };
 
 #endif //HACKEDBETA_HEADLESSOUTPUT_H

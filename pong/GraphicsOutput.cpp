@@ -21,9 +21,9 @@ void GraphicsOutput::Update(std::vector<std::vector<bool>> input) {
     texture.create(80,80);
     texture.update(board);
     sf::Sprite sprite(texture);
-    _window->draw(sprite);
+    _window.draw(sprite);
 
 }
-GraphicsOutput::GraphicsOutput(sf::RenderWindow &window) {
-    _window = &window;
+GraphicsOutput::GraphicsOutput() {
+
 }

@@ -7,6 +7,7 @@
 
 #include "BaseInput.h"
 class AIInput : public BaseInput {
+public:
     InputDirection Poll() override;
 };
 

@@ -10,10 +10,10 @@
 
 class GraphicsOutput : public BaseOutput {
 public:
-    GraphicsOutput(sf::RenderWindow &window);
+    GraphicsOutput();
     void Update(std::vector<std::vector<bool>>);
 private:
-    sf::RenderWindow * _window;
+    sf::RenderWindow _window = sf::RenderWindow(sf::VideoMode(80, 80), "Player vs Player");
 };
 
 #endif //HACKEDBETA_GRAPHICSOUTPUT_H
