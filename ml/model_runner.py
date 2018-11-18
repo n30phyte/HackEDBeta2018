@@ -41,3 +41,5 @@ if __name__ =="__main__":
         aprob = ((model.predict(x.reshape([1,x.shape[0]]), batch_size=1).flatten()))
         aprob = aprob/np.sum(aprob)
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
+
+        process.sendGameInput(action);
