@@ -2,11 +2,12 @@
 import os
 import numpy as np
 
+
 def getGameState():
     intermediate = []
     result = []
     count = 0
-    pipein = os.open("/tmp/myFIFO", "r")
+    pipein = os.open("../gamestate")
     line = pipein.readline();
     count = 0
     for i in line:
@@ -16,14 +17,19 @@ def getGameState():
             intermediate.append(0)
         count += 1
         if count == 80:
-        result.append(intermediate)
-        intermediate = []
-        count = 0
+            result.append(intermediate)
+            intermediate = []
+            count = 0
+
+    print(result)
     result = np.array(result, np.int)
     return result.astype(np.float).ravel()
 
+
 def sendGameInput(action):
-    if action == 2:
-        #up
-    elif action == 5:
-        #down
+    # if action == 2:
+    #     # up
+    #
+    # elif action == 5:
+    #     # down
+    pass

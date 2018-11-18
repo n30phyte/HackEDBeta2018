@@ -3,10 +3,6 @@
 //
 
 #include <HeadlessOutput.h>
-#include <sstream>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 void HeadlessOutput::Update(std::vector<int> ball_location,
                             std::vector<int> paddle0_location,
@@ -28,15 +24,18 @@ void HeadlessOutput::Update(std::vector<int> ball_location,
                 pongpipe::GameState_Pixels::GameState_Pixels_paddle1;
     }
 
-    std::string response[6400];
+    std::stringstream response;
 
-    for (int j = 0; j < 80; j++ ) {
+    for (int j = 0; j < 80; j++) {
         for (int i = 0; i < 80; i++) {
-            response[j*80+i] = board[i][j];
+            response << board[i][j];
         }
     }
+
+    write(pipe, response.str().c_str(), response.str().length() + 1);
 }
 HeadlessOutput::HeadlessOutput() {
-
+    mkfifo("/gamestate", 0666);
+    pipe = open("/gamestate", O_WRONLY);
 }
 
