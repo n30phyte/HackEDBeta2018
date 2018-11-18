@@ -105,7 +105,7 @@ if load_previous_weights:
         print("loading weights")
         model.load_weights(weigths_filename)
     else:
-        print("File ",weigths_filename," does not exis. Retraining... ")
+        print("File ",weigths_filename," does not exist. Retraining... ")
 
 #load previous action predictor model weights if they exist
 if load_previous_weights:
@@ -116,7 +116,7 @@ if load_previous_weights:
         print("loading weights")
         action_predictor_model.load_weights(apWeights_filename)
     else:
-        print("File ",apWeights_filename," does not exis. Retraining... ")
+        print("File ",apWeights_filename," does not exist. Retraining... ")
 
 
 
