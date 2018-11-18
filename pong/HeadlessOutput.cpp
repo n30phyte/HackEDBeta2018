@@ -28,15 +28,15 @@ void HeadlessOutput::Update(std::vector<int> ball_location,
                 pongpipe::GameState_Pixels::GameState_Pixels_paddle1;
     }
 
-    std::stringstream response;
+    std::string response[6400];
 
+    for (int j = 0; j < 80; j++ ) {
+        for (int i = 0; i < 80; i++) {
+            response[j*80+i] = board[i][j];
+        }
+    }
 }
 HeadlessOutput::HeadlessOutput() {
-//    int pipe;
-//    pipe = open("/tmp/myFIFO", O_WRONLY);
-//    while (true) {
-//        pipe.write(response.str(), 6400);
-//    }
-//    close(pipe);
+
 }
 
