@@ -14,7 +14,7 @@ void GraphicsOutput::Update(std::vector<int> ball_location,
     sf::Texture texture;
     // Set ball color
     board.setPixel(ball_location[0], ball_location[1], sf::Color::White);
-    board.setPixel(ball_location[0], ball_location[1] + 1, sf::Color(236,236,236));
+    board.setPixel(ball_location[0], ball_location[1] + 1, sf::Color(236, 236, 236));
 
     for (auto i = -3; i < 5; i++) {
         board.setPixel(paddle0_location[0], paddle0_location[1] + i, sf::Color(144, 144, 144));
@@ -35,8 +35,14 @@ void GraphicsOutput::Update(std::vector<int> ball_location,
     sf::Event event;
     _window.pollEvent(event);
 
+    while (_window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+            _window.close();
+            break
+        }
+    }
 }
-GraphicsOutput::GraphicsOutput() {
 
+GraphicsOutput::GraphicsOutput() {
     _window.setFramerateLimit(60);
 }
