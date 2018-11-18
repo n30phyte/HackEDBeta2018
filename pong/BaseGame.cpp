@@ -102,7 +102,6 @@ void BaseGame::Loop() {
     }
     if (AiInput != nullptr) {
         gameState.MovePaddle(1, AiInput->Poll());
-
     }
     gameState.Step();
 

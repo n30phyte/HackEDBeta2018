@@ -11,7 +11,7 @@ from keras.layers.advanced_activations import PReLU
 from keras.layers.normalization import BatchNormalization
 from keras.layers.core import Activation, Dropout, Flatten
 from keras.layers.convolutional import UpSampling2D, Convolution2D
-import ml.process as process
+import process
 
 input_dim = 80 * 80
 number_of_inputs = 6

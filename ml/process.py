@@ -13,11 +13,20 @@ def getGameState():
     while True:
         message = socket.recv_string()
         if message != None:
+            print("Got game state")
             break
 
     [ballX, ballY, paddle0X, paddle0Y, paddle1X, paddle1Y] = message.split()[1:]
 
-    matrix = np.zeros(80);
+    ballX = int(ballX)
+    ballY = int(ballY)
+    paddle0X = int(paddle0X)
+    paddle0Y = int(paddle0Y)
+    paddle1X = int(paddle1X)
+    paddle1Y = int(paddle1Y)
+
+    matrix = np.zeros((80, 80))
+
     matrix.itemset((ballX, ballY), 1)
     matrix.itemset((ballX + 1, ballY), 1)
 
@@ -26,10 +35,13 @@ def getGameState():
         matrix.itemset((paddle0X + 1, paddle0Y + i), 1)
         matrix.itemset((paddle1X, paddle1Y + i), 1)
         matrix.itemset((paddle1X + 1, paddle1Y + i), 1)
+
     return matrix.astype(np.float).ravel()
 
 
 def sendGameInput(action):
+    print("Send input")
+    print(action)
     context = zmq.Context()
     socket = context.socket(zmq.PUB)
     socket.bind("tcp://*:5556")

@@ -49,6 +49,5 @@ void HeadlessOutput::Update(std::vector<int> ball_location,
 }
 HeadlessOutput::HeadlessOutput() {
     publisher.bind("tcp://*:5555");
-
 }
 

@@ -57,7 +57,6 @@ public:
     void SetMode(GameMode);
 
 
-
 private:
     GraphicsOutput  * SFMLOutput;
     HeadlessOutput * AIOutput;
@@ -66,7 +65,6 @@ private:
     AIInput * AiInput;
 
     KeyboardInput* HumanInput2;
-
 
     GameStateManager gameState;
 };
