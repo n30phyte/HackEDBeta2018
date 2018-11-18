@@ -59,6 +59,8 @@ void GameStateManager::MovePaddle(int paddle, BaseInput::InputDirection directio
         players[paddle]->setVelocityY(-2);
     } else if (direction == BaseInput::InputDirection::UP) {
         players[paddle]->setVelocityY(2);
+    } else if (direction == BaseInput::InputDirection::NONE){
+        players[paddle]->setVelocityY(0);
     }
 
 }
@@ -128,13 +130,16 @@ void BaseGame::SetMode(BaseGame::GameMode mode) {
         case AIvsPlayer:
             AiInput = new AIInput();
             HumanInput = new KeyboardInput(BaseInput::PlayerSide::LEFT);
+            HumanInput2 = nullptr;
             SFMLOutput = new GraphicsOutput();
             AIOutput = new HeadlessOutput();
             break;
         case PlayervsPlayer:
+            AiInput = nullptr;
             HumanInput = new KeyboardInput(BaseInput::PlayerSide::LEFT);
             HumanInput2 = new KeyboardInput(BaseInput::PlayerSide::RIGHT);
             SFMLOutput = new GraphicsOutput();
+            AIOutput = nullptr;
             break;
     }
 

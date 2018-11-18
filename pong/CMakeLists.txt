@@ -3,6 +3,8 @@ project(HackEDBeta)
 
 include_directories(include)
 
+set(CMAKE_CXX_FLAGS "-O0")
+
 add_library(pong
         AIInput.cpp
         BaseGame.cpp

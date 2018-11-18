@@ -26,4 +26,5 @@ BaseInput::InputDirection KeyboardInput::Poll() {
             }
             break;
     }
+    return BaseInput::InputDirection::NONE;
 }

@@ -8,7 +8,8 @@
 #include "BaseInput.h"
 class AIInput : public BaseInput {
 public:
-    InputDirection Poll() override;
+    AIInput();
+    InputDirection Poll();
 };
 
 #endif //HACKEDBETA_AIINPUT_H

@@ -15,6 +15,7 @@ public:
     enum InputDirection {
         UP,
         DOWN,
+        NONE
     };
     virtual InputDirection Poll() = 0;
 };
