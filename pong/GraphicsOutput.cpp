@@ -38,7 +38,7 @@ void GraphicsOutput::Update(std::vector<int> ball_location,
     while (_window.pollEvent(event)) {
         if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
             _window.close();
-            break
+            break;
         }
     }
 }
