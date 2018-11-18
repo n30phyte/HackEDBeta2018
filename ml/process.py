@@ -47,9 +47,7 @@ def sendGameInput(action):
     socket2.bind("tcp://*:5556")
 
     if action == 2:
-        print("Sending up")
         socket2.send_string("gameinput UP\0")
 
     elif action == 5:
-        print("Sending down")
         socket2.send_string("gameinput DOWN\0")

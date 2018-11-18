@@ -42,21 +42,31 @@ def make_good():
     model.compile(loss='categorical_crossentropy', optimizer=opt)
     return model
 
+def pong_preprocess_screen(I):
+    I = I[35:195]
+    I = I[::2,::2,0]
+    I[I == 144] = 0
+    I[I == 109] = 0
+    I[I != 0] = 1
+    return I.astype(np.float).ravel()
+
 
 model = make_good()
 model.load_weights('pong_reinforce.h5')
 
 prev_x = None
 
+env = gym.make("Pong-v0")
+observation = env.reset()
+
 if __name__ =="__main__":
     while(True):
-        gameState = process.getGameState()
         
-        cur_x = gameState
+        cur_x = pong_preprocess_screen(observation);
         x = cur_x - prev_x if prev_x is not None else np.zeros(input_dim)
         prev_x = cur_x
         aprob = ((model.predict(x.reshape([1,x.shape[0]]), batch_size=1).flatten()))
         aprob = aprob/np.sum(aprob)
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
-
-        process.sendGameInput(action)
+        
+        observation, reward, done, info = env.step(action)
