@@ -10,19 +10,19 @@
 #include "InputManager.h"
 #include "OutputManager.h"
 
-
 class GameStateManager {
 public:
     GameStateManager();
 
+    void Step();
 private:
     // Game properties
     uint width = 80;
     uint height = 80;
-    uint scores[2] ;
+    uint scores[2];
 
     Ball ball = Ball();
-    Paddle* players[2];
+    Paddle *players[2];
 
     void Reset();
 
@@ -32,19 +32,25 @@ private:
 };
 
 class BaseGame {
+    enum GameMode {
+        AIvsAI,
+        AIvsPlayer,
+        PlayervsPlayer,
+    };
 public:
     BaseGame();
     void Start();
     void Loop();
     void Stop();
     bool is_running = true;
-    void setInputManager(InputManager);
+
+    void SetMode(GameMode);
 
 private:
-    InputManager inputManager;
-    OutputManager<BaseOutput> graphicsManager;
-
+    InputManager *inputManager;
+    OutputManager graphicsManager;
     GameStateManager gameState;
+
 };
 
 #endif //HACKEDBETA_BASEGAME_H

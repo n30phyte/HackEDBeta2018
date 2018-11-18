@@ -2,7 +2,7 @@
 
 Menu::Menu(float width, float height)
 {
-    if (!font.loadFromFile("arial.ttf"))
+    if (!font.loadFromFile("res/arial.ttf"))
     {
         // handle error
     }
@@ -28,7 +28,7 @@ Menu::Menu(float width, float height)
 }
 
 Menu::~Menu()
-{   
+{
 }
 
 void Menu::draw(sf::RenderWindow &window)
@@ -57,7 +57,7 @@ void Menu::MoveDown()
     {
         menu[selectedItemIndex].setColor(sf::Color::White);
         selectedItemIndex++;
-        
+
         //new selected item index
         menu[selectedItemIndex].setColor(sf::Color::Cyan);
     }

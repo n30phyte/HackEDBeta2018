@@ -46,13 +46,13 @@ protected:
     int startingCoordinates[2];     // X in 0, Y in 1
 };
 
-class Ball : private GameObject {
+class Ball : public GameObject {
 public:
     Ball();
 
 };
 
-class Paddle : private GameObject {
+class Paddle : public GameObject {
 
 public:
     explicit Paddle(int);
