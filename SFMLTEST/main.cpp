@@ -34,10 +34,12 @@ int main()
                     switch (menu.GetPressedItem())
                     {
                     case 0:
-                        std::cout << "Play button pressed" << std::endl;
+                        // PUT FIRST OPTION ACTION HERE
+                        std::cout << "1st button pressed" << std::endl;
                         break;
                     case 1:
-                        std::cout << "option pressed" << std::endl;
+                        // PUT SECOND OPTION ACTION HERE
+                        std::cout << "2nd button pressed" << std::endl;
                         break;
                     case 2:
                         window.close();
@@ -47,24 +49,21 @@ int main()
                 }
 
                 break;
+
+                
             case sf::Event::Closed:
                 window.close();
 
                 break;
 
-                // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-                // {
-                //     // closes window if esc key is pressed
-                //     window.close();
+            case sf::Keyboard::Escape:
+                window.close();
             }
         }
 
-        // clear window with green
         window.clear();
 
         menu.draw(window);
-
-        //window.draw(Menu);
 
         window.display();
     }
