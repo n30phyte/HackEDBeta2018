@@ -18,9 +18,9 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='pipe.proto',
   package='pongpipe',
-  serialized_pb=_b('\n\npipe.proto\x12\x08pongpipe\"+\n\tGameInput\x12\r\n\x05KeyUp\x18\x01 \x02(\x08\x12\x0f\n\x07KeyDown\x18\x02 \x02(\x08\"9\n\tGameState\",\n\x06Pixels\x12\x0b\n\x07paddle1\x10\x00\x12\x0b\n\x07paddle2\x10\x01\x12\x08\n\x04\x62\x61ll\x10\x02')
+  syntax='proto2',
+  serialized_pb=_b('\n\npipe.proto\x12\x08pongpipe\"+\n\tGameInput\x12\r\n\x05KeyUp\x18\x01 \x02(\x08\x12\x0f\n\x07KeyDown\x18\x02 \x02(\x08\"s\n\tGameState\x12-\n\x05\x62oard\x18\x01 \x03(\x0e\x32\x1a.pongpipe.GameState.PixelsB\x02\x10\x01\"7\n\x06Pixels\x12\t\n\x05\x65mpty\x10\x00\x12\x0b\n\x07paddle0\x10\x01\x12\x0b\n\x07paddle1\x10\x02\x12\x08\n\x04\x62\x61ll\x10\x03')
 )
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -31,22 +31,26 @@ _GAMESTATE_PIXELS = _descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='paddle1', index=0, number=0,
+      name='empty', index=0, number=0,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='paddle2', index=1, number=1,
+      name='paddle0', index=1, number=1,
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='ball', index=2, number=2,
+      name='paddle1', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='ball', index=3, number=3,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=82,
-  serialized_end=126,
+  serialized_start=129,
+  serialized_end=184,
 )
 _sym_db.RegisterEnumDescriptor(_GAMESTATE_PIXELS)
 
@@ -64,14 +68,14 @@ _GAMEINPUT = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='KeyDown', full_name='pongpipe.GameInput.KeyDown', index=1,
       number=2, type=8, cpp_type=7, label=2,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -80,6 +84,7 @@ _GAMEINPUT = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -95,6 +100,13 @@ _GAMESTATE = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='board', full_name='pongpipe.GameState.board', index=0,
+      number=1, type=14, cpp_type=8, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=_descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\020\001')), file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -104,16 +116,19 @@ _GAMESTATE = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
   serialized_start=69,
-  serialized_end=126,
+  serialized_end=184,
 )
 
+_GAMESTATE.fields_by_name['board'].enum_type = _GAMESTATE_PIXELS
 _GAMESTATE_PIXELS.containing_type = _GAMESTATE
 DESCRIPTOR.message_types_by_name['GameInput'] = _GAMEINPUT
 DESCRIPTOR.message_types_by_name['GameState'] = _GAMESTATE
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 GameInput = _reflection.GeneratedProtocolMessageType('GameInput', (_message.Message,), dict(
   DESCRIPTOR = _GAMEINPUT,
@@ -130,4 +145,6 @@ GameState = _reflection.GeneratedProtocolMessageType('GameState', (_message.Mess
 _sym_db.RegisterMessage(GameState)
 
 
+_GAMESTATE.fields_by_name['board'].has_options = True
+_GAMESTATE.fields_by_name['board']._options = _descriptor._ParseOptions(descriptor_pb2.FieldOptions(), _b('\020\001'))
 # @@protoc_insertion_point(module_scope)

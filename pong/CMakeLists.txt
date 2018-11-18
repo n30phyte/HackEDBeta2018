@@ -13,7 +13,8 @@ add_library(pong
         KeyboardInput.cpp
         GameObject.cpp
         Menu.cpp
-        WindowManager.cpp)
+        WindowManager.cpp
+        pipe.pb.cc)
 
 # Look for SFML CMake modules
 list(APPEND CMAKE_MODULE_PATH "/usr/share/cmake/Modules")

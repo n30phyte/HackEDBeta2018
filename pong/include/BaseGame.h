@@ -29,9 +29,6 @@ public:
     std::vector<int> GetPaddleLocation(int);
     std::vector<int> GetBallLocation();
 private:
-    // Game properties
-    const static uint width = 80;
-    const static uint height = 80;
     uint scores[2];
 
     Ball ball = Ball();
@@ -55,7 +52,6 @@ public:
     BaseGame();
     void Start();
     void Loop();
-    void Stop();
     bool is_running = true;
 
     void SetMode(GameMode);

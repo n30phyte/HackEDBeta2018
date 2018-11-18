@@ -4,13 +4,18 @@ package pongpipe;
 
 message GameInput {
     required bool KeyUp = 1;
-    required bool KeyDown = 2;    
+    required bool KeyDown = 2;
 }
 
 message GameState {
     enum Pixels {
-        paddle1 = 0;
-        paddle2 = 1;
-        ball = 2;
+        empty = 0;
+        paddle0 = 1;
+        paddle1 = 2;
+        ball = 3;
     }
+    repeated Pixels board = 1 [packed = true];
+
 }
+
+

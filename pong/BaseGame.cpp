@@ -90,10 +90,6 @@ void BaseGame::Start() {
     gameState = GameStateManager();
 }
 
-void BaseGame::Stop() {
-    is_running = false;
-}
-
 void BaseGame::Loop() {
 
     if (HumanInput != nullptr) {

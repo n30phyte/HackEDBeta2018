@@ -43,6 +43,16 @@ void WindowManager::Render() {
                                     break;
                                 case 1:
                                     std::cout << "VS AI pressed" << std::endl;
+                                    windowContext.clear();
+                                    windowContext.close();
+
+                                    Game.SetMode(BaseGame::GameMode::AIvsPlayer);
+
+                                    Game.Start();
+                                    while(Game.is_running)
+                                    {
+                                        Game.Loop();
+                                    }
                                     break;
                                 case 2:
                                     windowContext.close();

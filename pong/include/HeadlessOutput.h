@@ -5,6 +5,8 @@
 #ifndef HACKEDBETA_HEADLESSOUTPUT_H
 #define HACKEDBETA_HEADLESSOUTPUT_H
 #include "BaseOutput.h"
+#include <vector>
+#include "pipe.pb.h"
 
 class HeadlessOutput : public BaseOutput {
 public:
