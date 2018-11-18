@@ -5,11 +5,8 @@
 #ifndef HACKEDBETA_GRAPHICSOUTPUT_H
 #define HACKEDBETA_GRAPHICSOUTPUT_H
 
-#include <SFML/Graphics.hpp>
-
 class GraphicsOutput {
 private:
-    sf::RenderWindow gameWindow = sf::RenderWindow(sf::VideoMode(560, 560), "Pong");
 
 };
 

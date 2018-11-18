@@ -8,6 +8,12 @@ void GameStateManager::ScoreCheck() {
     // Check ball location
     // If ball is < 8, Player1++
     // else player2++
+    if (ball.getX() < 8) {
+        scores[2]++;
+    }
+    if (ball.getX() > 72) {
+        scores[1]++;
+    }
     Reset();
 }
 
@@ -50,7 +56,15 @@ void GameStateManager::MovePaddle(int paddle, BaseInput::InputDirection directio
 
 }
 void GameStateManager::CollisionCheck() {
-
+    if ((ball.getY() > players[0]->getX() - 4) && (ball.getY() > player[0].getY() +4) && (ball.getX == 10)){
+        ball.setVelocityX(-ball.getVelocityX);
+    }
+    if ((ball.getY() > players[0]->getX() - 4) && (ball.getY() > player[0].getY() +4) && (ball.getX == 70)){
+        ball.setVelocityX(-ball.getVelocityX);
+    }
+    if (ball.getY() < 0 || ball.getY() > 80) {
+        ball.setVelocityY(-ball.getVelocityY);
+    }
 }
 std::vector<std::vector<bool>> GameStateManager::getBoard() {
     return board;

@@ -12,7 +12,7 @@
 
 class WindowManager {
 public:
-    WindowManager(BaseGame);
+    explicit WindowManager(BaseGame);
     void Render();
 private:
     sf::RenderWindow windowContext = sf::RenderWindow(sf::VideoMode(560, 560), "ai-pong :3c", sf::Style::Default);

@@ -11,6 +11,14 @@ int GameObject::getY() {
     return coordinates[1];
 }
 
+int GameObject::getVelocityX() {
+    return velocityX;
+}
+
+int GameObject::getVelocityY() {
+    return velocityY;
+}
+
 void GameObject::setX(int target) {
     coordinates[0] = target;
 }

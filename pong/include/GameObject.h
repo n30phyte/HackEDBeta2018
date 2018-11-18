@@ -20,6 +20,9 @@ public:
 
 protected:
 
+    int getVelocityX();
+    int getVelocityY();
+
     void setVelocityX(int);
     void setVelocityY(int);
 

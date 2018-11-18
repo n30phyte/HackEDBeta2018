@@ -22,7 +22,7 @@ list(APPEND CMAKE_MODULE_PATH "/usr/share/SFML/cmake/Modules")
 find_package(Boost REQUIRED)
 
 # Find SFML
-find_package(SFML 2 REQUIRED network audio graphics window system)
+find_package(SFML 2.3 REQUIRED network audio graphics window system)
 
 # Find protobuf
 find_package(Protobuf REQUIRED)
