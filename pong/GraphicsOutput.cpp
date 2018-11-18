@@ -11,7 +11,7 @@ void GraphicsOutput::Update(std::vector<std::vector<bool>> input) {
     for (int x = 0; x < 80; x++) {
         for (int y = 0; y < 80; y++) {
             if (input[x][y]) {
-                board.setPixel(x, y, sf::Color(255, 255, 255));
+                board.setPixel(y, x, sf::Color::White);
             }
         }
     }

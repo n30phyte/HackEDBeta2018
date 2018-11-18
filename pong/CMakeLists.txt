@@ -6,7 +6,6 @@ include_directories(include)
 add_library(pong
         AIInput.cpp
         BaseGame.cpp
-        BaseOutput.cpp
         GraphicsOutput.cpp
         HeadlessOutput.cpp
         KeyboardInput.cpp

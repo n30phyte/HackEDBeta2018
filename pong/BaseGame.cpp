@@ -88,15 +88,15 @@ void BaseGame::Stop() {
 
 void BaseGame::Loop() {
 
-    if(HumanInput != nullptr){
+    if (HumanInput != nullptr) {
         gameState.MovePaddle(0, HumanInput->Poll());
 
     }
-    if(AiInput != nullptr){
+    if (AiInput != nullptr) {
         gameState.MovePaddle(0, AiInput->Poll());
 
     }
-    if(HumanInput != nullptr){
+    if (HumanInput != nullptr) {
         gameState.MovePaddle(0, HumanInput2->Poll());
 
     }
@@ -104,13 +104,19 @@ void BaseGame::Loop() {
 
     auto _board = gameState.getBoard();
 
+    for (int y = 0; y < 80; y++) {
+        for (int x = 0; x < 80; x++) {
+            std::cout << _board[x][y];
+        }
+        std::cout << std::endl;
+    }
+
     if (SFMLOutput != nullptr) {
         SFMLOutput->Update(_board);
     }
     if (AIOutput != nullptr) {
         AIOutput->Update(_board);
     }
-
 
 }
 BaseGame::BaseGame() {
@@ -121,13 +127,13 @@ void BaseGame::SetMode(BaseGame::GameMode mode) {
     switch (mode) {
         case AIvsPlayer:
             AiInput = new AIInput();
-            HumanInput = new KeyboardInput(0);
+            HumanInput = new KeyboardInput(BaseInput::PlayerSide::LEFT);
             SFMLOutput = new GraphicsOutput();
             AIOutput = new HeadlessOutput();
             break;
         case PlayervsPlayer:
-            HumanInput = new KeyboardInput(0);
-            HumanInput2 = new KeyboardInput(1);
+            HumanInput = new KeyboardInput(BaseInput::PlayerSide::LEFT);
+            HumanInput2 = new KeyboardInput(BaseInput::PlayerSide::RIGHT);
             SFMLOutput = new GraphicsOutput();
             break;
     }
