@@ -36,7 +36,7 @@ private:
     void CollisionCheck();
     void ScoreCheck();
 
-    std::vector<std::vector<bool>> board = std::vector<std::vector<bool>>;
+    std::vector<std::vector<bool>> board;
 
 };
 

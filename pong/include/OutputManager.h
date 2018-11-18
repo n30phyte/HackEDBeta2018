@@ -15,28 +15,32 @@
 class OutputManager {
 
 public:
+
     OutputManager(BaseOutput *output0, BaseOutput *output1) {
         Output0 = output0;
         Output1 = output1;
     }
+
     void Update0() {
         if (Output0 != nullptr) {
-            Output0->Update();
+            Output0->Update(Grid);
 
         }
     }
+
     void Update1() {
         if (Output1 != nullptr) {
-            Output1->Update();
+            Output1->Update(Grid);
 
         }
     }
-    void setGrid(std::vector<std::vector<bool>> vector) {
-
+    void setGrid(std::vector<std::vector<bool>> grid) {
+        Grid = grid;
     }
 private:
     BaseOutput *Output0;
     BaseOutput *Output1;
+    std::vector<std::vector<bool>> Grid;
 
 };
 

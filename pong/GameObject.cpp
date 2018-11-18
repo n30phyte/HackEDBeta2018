@@ -28,7 +28,8 @@ void GameObject::setY(int target) {
 }
 
 void GameObject::step() {
-
+    coordinates[0] = coordinates[0] + velocityX;
+    coordinates[1] = coordinates[1] + velocityY;
 }
 
 void GameObject::randomDirection() {
@@ -37,8 +38,8 @@ void GameObject::randomDirection() {
     std::mt19937 rng(rd());
     std::uniform_int_distribution<int> dice(1, 6);
 
-    setVelocityX(dice);
-    setVelocityY(dice);
+    setVelocityX(dice(rng));
+    setVelocityY(dice(rng));
 
 }
 

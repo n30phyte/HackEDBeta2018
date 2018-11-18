@@ -18,13 +18,13 @@ public:
 
     void step();
 
-protected:
+    void setVelocityX(int);
+    void setVelocityY(int);
 
     int getVelocityX();
     int getVelocityY();
 
-    void setVelocityX(int);
-    void setVelocityY(int);
+protected:
 
     void setX(int);
     void setY(int);

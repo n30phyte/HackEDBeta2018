@@ -44,26 +44,22 @@ void GameStateManager::Step() {
     CollisionCheck();
 }
 void GameStateManager::MovePaddle(int paddle, BaseInput::InputDirection direction) {
-    if(direction == BaseInput::InputDirection::DOWN)
-    {
+    if (direction == BaseInput::InputDirection::DOWN) {
         players[paddle]->setVelocityY(-2);
-    }
-    else if (direction == BaseInput::InputDirection::UP)
-    {
+    } else if (direction == BaseInput::InputDirection::UP) {
         players[paddle]->setVelocityY(2);
     }
 
-
 }
 void GameStateManager::CollisionCheck() {
-    if ((ball.getY() > players[0]->getX() - 4) && (ball.getY() > player[0].getY() +4) && (ball.getX == 10)){
-        ball.setVelocityX(-ball.getVelocityX);
+    if ((ball.getY() > players[0]->getX() - 4) && (ball.getY() > players[0]->getY() + 4) && (ball.getX() == 10)) {
+        ball.setVelocityX(-ball.getVelocityX());
     }
-    if ((ball.getY() > players[0]->getX() - 4) && (ball.getY() > player[0].getY() +4) && (ball.getX == 70)){
-        ball.setVelocityX(-ball.getVelocityX);
+    if ((ball.getY() > players[0]->getX() - 4) && (ball.getY() > players[0]->getY() + 4) && (ball.getX() == 70)) {
+        ball.setVelocityX(-ball.getVelocityX());
     }
     if (ball.getY() < 0 || ball.getY() > 80) {
-        ball.setVelocityY(-ball.getVelocityY);
+        ball.setVelocityY(-ball.getVelocityY());
     }
 }
 std::vector<std::vector<bool>> GameStateManager::getBoard() {
@@ -110,8 +106,8 @@ void BaseGame::SetMode(BaseGame::GameMode mode) {
         case AIvsPlayer:
             input0 = new AIInput();
             input1 = new KeyboardInput(0);
-            output0 = new HeadlessOutput(0);
-            output1 = new GraphicsOutput();
+            output0 = new GraphicsOutput();
+            output1 = new HeadlessOutput(0);
 
             break;
         case PlayervsPlayer:
