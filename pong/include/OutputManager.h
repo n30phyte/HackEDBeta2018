@@ -15,7 +15,28 @@
 class OutputManager {
 
 public:
+    OutputManager(BaseOutput *output0, BaseOutput *output1) {
+        Output0 = output0;
+        Output1 = output1;
+    }
+    void Update0() {
+        if (Output0 != nullptr) {
+            Output0->Update();
 
+        }
+    }
+    void Update1() {
+        if (Output1 != nullptr) {
+            Output1->Update();
+
+        }
+    }
+    void setGrid(std::vector<std::vector<bool>> vector) {
+
+    }
+private:
+    BaseOutput *Output0;
+    BaseOutput *Output1;
 
 };
 

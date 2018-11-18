@@ -7,58 +7,49 @@
 
 #include <random>
 
-enum Direction {
-    STOP,
-    LEFT,
-    UPLEFT,
-    UPRIGHT,
-    RIGHT,
-    DOWNRIGHT,
-    DOWNLEFT,
-    UP,
-    DOWN,
-};
-
 class GameObject {
 public:
     GameObject(int x, int y);
 
     void Reset();
-    virtual void setDirection(Direction target);
 
     int getX();
     int getY();
 
-    Direction getDirection();
+    void step();
 
 protected:
-    Direction direction;
+
+    void setVelocityX(int);
+    void setVelocityY(int);
 
     void setX(int);
     void setY(int);
 
-    void step();
-
     virtual void randomDirection();
-
 
     int coordinates[2];             // X in 0, Y in 1
     int startingCoordinates[2];     // X in 0, Y in 1
+
+private:
+    int velocityX;
+    int velocityY;
 };
 
 class Ball : public GameObject {
 public:
     Ball();
-
 };
 
 class Paddle : public GameObject {
 
 public:
     explicit Paddle(int);
-    void setDirection(Direction target) final;
 
-    void randomDirection();
+    void setVelocityX(int) {
+        GameObject::setVelocityX(0);
+    }
+
 };
 
 #endif //HACKEDBETA_GAMEOBJECT_H

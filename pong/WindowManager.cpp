@@ -30,10 +30,20 @@ void WindowManager::Render() {
                         case sf::Keyboard::Return:
                             switch (menu.GetPressedItem()) {
                                 case 0:
-                                    std::cout << "PvP button pressed" << std::endl;
+                                    std::cout << "Play button pressed" << std::endl;
+                                    windowContext.clear();
+                                    windowContext.display();
+
+                                    Game.SetMode(BaseGame::GameMode::PlayervsPlayer);
+                                    Game.Start();
+                                    while(Game.is_running)
+                                    {
+                                        Game.Loop();
+
+                                    }
                                     break;
                                 case 1:
-                                    std::cout << "PvA button pressed" << std::endl;
+                                    std::cout << "VS AI pressed" << std::endl;
                                     break;
                                 case 2:
                                     windowContext.close();

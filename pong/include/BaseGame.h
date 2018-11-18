@@ -6,6 +6,8 @@
 #define HACKEDBETA_BASEGAME_H
 
 #include <iostream>
+#include <vector>
+
 #include "GameObject.h"
 #include "InputManager.h"
 #include "OutputManager.h"
@@ -15,10 +17,15 @@ public:
     GameStateManager();
 
     void Step();
+
+    void MovePaddle(int, BaseInput::InputDirection);
+
+    std::vector<std::vector<bool>> getBoard();
+
 private:
     // Game properties
-    uint width = 80;
-    uint height = 80;
+    const static uint width = 80;
+    const static uint height = 80;
     uint scores[2];
 
     Ball ball = Ball();
@@ -29,15 +36,19 @@ private:
     void CollisionCheck();
     void ScoreCheck();
 
+    std::vector<std::vector<bool>> board = std::vector<std::vector<bool>>;
+
 };
 
 class BaseGame {
+
+public:
     enum GameMode {
         AIvsAI,
         AIvsPlayer,
         PlayervsPlayer,
     };
-public:
+
     BaseGame();
     void Start();
     void Loop();
@@ -48,7 +59,7 @@ public:
 
 private:
     InputManager *inputManager;
-    OutputManager graphicsManager;
+    OutputManager * graphicsManager;
     GameStateManager gameState;
 
 };
