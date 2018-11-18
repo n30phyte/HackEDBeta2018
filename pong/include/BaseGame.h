@@ -57,11 +57,12 @@ public:
 
     void SetMode(GameMode);
 
+    void SetWindow(sf::RenderWindow &);
 private:
     InputManager *inputManager;
     OutputManager * graphicsManager;
     GameStateManager gameState;
-
+    sf::RenderWindow * windowContext;
 };
 
 #endif //HACKEDBETA_BASEGAME_H

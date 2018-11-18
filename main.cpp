@@ -1,7 +1,6 @@
-#include <iostream>
+
 
 #include "WindowManager.h"
-#include "BaseGame.h"
 
 int main(int argc, char *argv[]) {
 

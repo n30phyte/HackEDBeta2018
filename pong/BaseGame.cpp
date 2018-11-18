@@ -9,10 +9,10 @@ void GameStateManager::ScoreCheck() {
     // If ball is < 8, Player1++
     // else player2++
     if (ball.getX() < 8) {
-        scores[1]++;
+        scores[0]++;
     }
     if (ball.getX() > 72) {
-        scores[0]++;
+        scores[1]++;
     }
     Reset();
 }
@@ -26,6 +26,7 @@ GameStateManager::GameStateManager() {
     players[0] = new Paddle(8);
     players[1] = new Paddle(40 - 8);
 
+    board = std::vector<std::vector<bool>>(80, std::vector<bool>(80, false));
 }
 
 void GameStateManager::Reset() {
@@ -49,7 +50,7 @@ void GameStateManager::Step() {
         board[players[1]->getX()][players[1]->getY()+i] = true;
         board[players[1]->getX()+1][players[1]->getY()+i] = true;
     }
-    
+
     ScoreCheck();
     CollisionCheck();
 }
@@ -116,18 +117,21 @@ void BaseGame::SetMode(BaseGame::GameMode mode) {
         case AIvsPlayer:
             input0 = new AIInput();
             input1 = new KeyboardInput(0);
-            output0 = new GraphicsOutput();
+            output0 = new GraphicsOutput(*windowContext);
             output1 = new HeadlessOutput(0);
 
             break;
         case PlayervsPlayer:
             input0 = new KeyboardInput(0);
             input1 = new KeyboardInput(1);
-            output0 = new GraphicsOutput();
+            output0 = new GraphicsOutput(*windowContext);
             break;
     }
 
     inputManager = new InputManager(input0, input1);
     graphicsManager = new OutputManager(output0, output1);
 
+}
+void BaseGame::SetWindow(sf::RenderWindow &WindowContext) {
+    windowContext = &WindowContext;
 }

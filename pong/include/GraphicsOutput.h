@@ -10,10 +10,10 @@
 
 class GraphicsOutput : public BaseOutput {
 public:
+    GraphicsOutput(sf::RenderWindow &window);
     void Update(std::vector<std::vector<bool>>);
-    sf::Texture getTexture();
 private:
-    sf::Texture _texture;
+    sf::RenderWindow * _window;
 };
 
 #endif //HACKEDBETA_GRAPHICSOUTPUT_H

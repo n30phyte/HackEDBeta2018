@@ -35,11 +35,11 @@ void WindowManager::Render() {
                                     windowContext.display();
 
                                     Game.SetMode(BaseGame::GameMode::PlayervsPlayer);
+                                    Game.SetWindow(windowContext);
                                     Game.Start();
                                     while(Game.is_running)
                                     {
                                         Game.Loop();
-
                                     }
                                     break;
                                 case 1:
