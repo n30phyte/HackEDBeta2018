@@ -11,10 +11,7 @@ from keras.layers.advanced_activations import PReLU
 from keras.layers.normalization import BatchNormalization
 from keras.layers.core import Activation, Dropout, Flatten
 from keras.layers.convolutional import UpSampling2D, Convolution2D
-import process
-
-env = gym.make("Pong-v0")
-observation = env.reset()
+import ml.process as process
 
 input_dim = 80 * 80
 number_of_inputs = 6
@@ -42,4 +39,4 @@ if __name__ =="__main__":
         aprob = aprob/np.sum(aprob)
         action = np.random.choice(number_of_inputs, 1, p=aprob)[0]
 
-        process.sendGameInput(action);
+        process.sendGameInput(action)
